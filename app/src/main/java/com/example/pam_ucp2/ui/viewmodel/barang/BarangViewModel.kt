@@ -1,5 +1,13 @@
 package com.example.pam_ucp2.ui.viewmodel.barang
 
+// event adalah aksi yang merubah kondisi
+// state adalah keadaan yang terjadi setelah ada trigger dari event
+data class BrgUIState(
+    val barangEvent: BarangEvent = BarangEvent(),
+    val isEntryValid: FormErrorState = FormErrorState(),
+    val snackBarMessage: String? = null,
+)
+
 // untuk menghandle atau memberikan nilai validasi apakah data benar atau tidak
 data class FormErrorState(
     val id: String? = null,
