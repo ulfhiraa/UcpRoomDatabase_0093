@@ -2,12 +2,11 @@ package com.example.pam_ucp2.ui.view.barang
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.material3.Button
 import androidx.compose.material3.OutlinedTextField
-import androidx.compose.material3.RadioButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -16,7 +15,36 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.pam_ucp2.ui.viewmodel.barang.BarangEvent
+import com.example.pam_ucp2.ui.viewmodel.barang.BrgUIState
 import com.example.pam_ucp2.ui.viewmodel.barang.FormErrorState
+
+
+@Composable
+fun InsertBodyBrg( // Menambahkan tampilan form untuk memasukkan data barang dan button simpan.
+    modifier: Modifier = Modifier,
+    onValueChange: (BarangEvent) -> Unit,
+    uiState: BrgUIState,
+    onClick: () -> Unit
+) {
+    Column (
+        modifier = modifier.fillMaxWidth(),
+        verticalArrangement = Arrangement.Center,
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+        FormBarang(
+            barangEvent = uiState.barangEvent,
+            onValueChange = onValueChange,
+            errorState = uiState.isEntryValid,
+            modifier = Modifier.fillMaxWidth()
+        )
+        Button(
+            onClick = onClick,
+            modifier = Modifier.fillMaxWidth()
+        ) {
+            Text("Simpan")
+        }
+    }
+}
 
 @Preview(showBackground = true)
 @Composable
@@ -113,26 +141,26 @@ fun FormBarang(
 
         // DROPDOWN NAMA SUPPLIER
         // Menambahkan form input barang dengan validasi dan dropdown supplier
-        Row (
-            modifier = modifier.fillMaxWidth()
-        ){
-            namaSupplier.forEach{ namaSupplier ->
-                Row (
-                    verticalAlignment = Alignment.CenterVertically,
-                    horizontalArrangement = Arrangement.Start
-                ){
-                    RadioButton(
-                        selected = barangEvent.namaSupplier == namaSupplier,
-                        onClick = {
-                            onValueChange(barangEvent.copy(namaSupplier = namaSupplier))
-                        },
-                    )
-                    Text(
-                        text = namaSupplier,
-                    )
-                }
-            }
-        }
+//        Row (
+//            modifier = modifier.fillMaxWidth()
+//        ){
+//            namaSupplier.forEach{ namaSupplier ->
+//                Row (
+//                    verticalAlignment = Alignment.CenterVertically,
+//                    horizontalArrangement = Arrangement.Start
+//                ){
+//                    RadioButton(
+//                        selected = barangEvent.namaSupplier == namaSupplier,
+//                        onClick = {
+//                            onValueChange(barangEvent.copy(namaSupplier = namaSupplier))
+//                        },
+//                    )
+//                    Text(
+//                        text = namaSupplier,
+//                    )
+//                }
+//            }
+//        }
         Text(
             text = errorState.namaSupplier ?: "",
             color = Color.Red
