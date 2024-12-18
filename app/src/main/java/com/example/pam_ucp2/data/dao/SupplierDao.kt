@@ -8,6 +8,8 @@ import com.example.pam_ucp2.data.entity.Supplier
 import kotlinx.coroutines.flow.Flow
 
 interface SupplierDao {
+
+    // Operasi
     @Insert
     suspend fun insertSupplier(
         supplier: Supplier
