@@ -13,7 +13,10 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
 
 @Composable
-fun ComponentDetailMhs( // menampilkan detail informasi mhs
+fun ItemD
+
+@Composable
+fun ComponentDetailBrg( // menampilkan detail informasi brgk
     modifier: Modifier = Modifier,
     judul: String, // menampilkan judul dari informasi
     isinya: String // menampilkan isi dari informasi
