@@ -31,10 +31,59 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.pam_ucp2.data.entity.Barang
+import com.example.pam_ucp2.ui.customwidget.TopAppBar
+import com.example.pam_ucp2.ui.viewmodel.PenyediaViewModel
+import com.example.pam_ucp2.ui.viewmodel.barang.DetailBrgViewModel
 import com.example.pam_ucp2.ui.viewmodel.barang.DetailUiState
 import com.example.pam_ucp2.ui.viewmodel.barang.toBarangEntity
 
+@Composable
+fun DetailBrgView(
+// menampilkan detail data barang dengan opsi untuk back ke halaman sebelumnya, mengedit dan menghapus data
+    modifier: Modifier = Modifier,
+    viewModel: DetailBrgViewModel = viewModel(factory = PenyediaViewModel.Factory),
+    onBack: () -> Unit = { },
+    onEditClick: (String) -> Unit = { },
+    onDeleteClick: () -> Unit = { }
+){
+    Scaffold (
+        topBar = {
+            TopAppBar(
+                judul = "Detail Barang",
+                showBackButton = true,
+                onBack = onBack,
+                modifier = modifier
+            )
+        },
+        floatingActionButton = {
+            FloatingActionButton(
+                onClick = {
+                    onEditClick(viewModel.detailUiState.value.detailUiEvent.id)
+                },
+                shape = MaterialTheme.shapes.medium,
+                modifier = Modifier.padding(16.dp)
+            ) {
+                Icon(
+                    imageVector = Icons.Default.Edit,
+                    contentDescription = "Edit Barang",
+                )
+            }
+        }
+    ){  innerPadding ->
+        val detailUiState by viewModel.detailUiState.collectAsState()
+
+        BodyDetailBrg(
+            modifier = Modifier.padding(innerPadding),
+            detailUiState = detailUiState,
+            onDeleteClick = {
+                viewModel.deleteBrg()
+                onDeleteClick()
+            }
+        )
+    }
+}
 
 @Composable
 fun BodyDetailBrg( // untuk menampilkan tampilan detail barang
