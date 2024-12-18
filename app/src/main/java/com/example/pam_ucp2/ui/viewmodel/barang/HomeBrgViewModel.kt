@@ -24,7 +24,7 @@ class HomeBrgViewModel (
         .filterNotNull()
         .map {
             HomeUiState(
-                listMhs = it.toList(),
+                listBrg = it.toList(),
                 isLoading = false,
             )
         }
@@ -53,7 +53,7 @@ class HomeBrgViewModel (
 
 // state; mengubah tampilan
 data class HomeUiState(
-    val listMhs: List<Barang> = listOf(),
+    val listBrg: List<Barang> = listOf(),
     val isLoading: Boolean = false,
     val isError: Boolean = false,
     val errorMessage: String = ""
