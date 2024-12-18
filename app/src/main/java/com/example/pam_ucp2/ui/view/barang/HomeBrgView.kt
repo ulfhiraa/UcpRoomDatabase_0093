@@ -10,13 +10,17 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.DateRange
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.Person
 import androidx.compose.material3.Card
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Scaffold
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -29,7 +33,50 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.pam_ucp2.data.entity.Barang
+import com.example.pam_ucp2.ui.customwidget.TopAppBar
+import com.example.pam_ucp2.ui.viewmodel.PenyediaViewModel
 import kotlinx.coroutines.launch
+
+@Composable
+fun HomeBrgView( // untuk tampilan halaman utama daftar barang
+    viewModel: HomeBrgViewModel = viewModel(factory = PenyediaViewModel.Factory),
+    onAddBrg: () -> Unit = { }, // fungsi yang dipanggil saat btn Tambah Barang diklik.
+    onDetailClick: (String) -> Unit = { }, // Fungsi yang dipanggil saat Barang di daftar diklik.
+    modifier: Modifier = Modifier // mengatur layout
+){
+    Scaffold ( // Agar UI konsisten
+        topBar = {
+            TopAppBar(
+                judul = "Daftar Barang",
+                showBackButton = false,
+                onBack = { },
+                modifier = Modifier
+            )
+        },
+        floatingActionButton = { // tombol aksi untuk add brg
+            FloatingActionButton(
+                onClick = onAddBrg,
+                shape = MaterialTheme.shapes.medium,
+                modifier = Modifier.padding(16.dp)
+            ) {
+                Icon(
+                    imageVector = Icons.Default.Add,
+                    contentDescription = "Tambah Barang",
+                )
+            }
+        }
+    ){ innerPadding ->
+        val homeUiState by viewModel.homeUiState.collectAsState()
+
+        BodyHomeBrgView(
+            modifier = Modifier.padding(innerPadding),
+            homeUiState = homeUiState,
+            onClick = {
+                onDetailClick(it)
+            },
+        )
+    }
+}
 
 @Composable //  untuk menampilkan status UI (loading, error, data kosong, atau daftar barang dengan dukungan tampilan dinamis dan Snackbar.
 fun BodyHomeBrgView( // untuk menampilkan data
@@ -61,7 +108,7 @@ fun BodyHomeBrgView( // untuk menampilkan data
             }
         }
 
-        homeUiState.listMhs.isEmpty() -> {
+        homeUiState.listBrg.isEmpty() -> {
             // menampilkan pesan jika data kosong
             Box(
                 modifier = modifier.fillMaxSize(),
