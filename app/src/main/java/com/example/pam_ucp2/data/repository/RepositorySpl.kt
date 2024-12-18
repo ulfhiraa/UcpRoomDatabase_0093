@@ -9,8 +9,4 @@ interface RepositorySpl {
     fun getAllSpl(): Flow<List<Supplier>>
 
     fun getSpl(id: String) : Flow<Supplier>
-
-    suspend fun deleteSpl(supplier: Supplier)
-
-    suspend fun updateSpl(supplier: Supplier)
 }
