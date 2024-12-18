@@ -20,14 +20,4 @@ interface SupplierDao {
 
     @Query("SELECT * FROM supplier WHERE id = :id")
     fun getSupplier (id: String) : Flow<Supplier>
-
-    @Delete
-    suspend fun deleteSupplier(
-        supplier: Supplier
-    )
-
-    @Update
-    suspend fun updateSupplier(
-        supplier: Supplier
-    )
 }
