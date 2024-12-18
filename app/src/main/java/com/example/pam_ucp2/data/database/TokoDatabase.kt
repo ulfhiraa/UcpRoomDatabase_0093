@@ -1,6 +1,9 @@
 package com.example.pam_ucp2.data.database
 
+import android.content.Context
+import android.provider.CalendarContract.Instances
 import androidx.room.Database
+import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.example.pam_ucp2.data.dao.BarangDao
 import com.example.pam_ucp2.data.dao.SupplierDao
@@ -17,4 +20,20 @@ abstract class TokoDatabase : RoomDatabase(){
     // Mendefinisikan fungsi untuk mengakses data Supplier
     abstract fun supplierDao(): SupplierDao
 
+    //bisa mengakses properti dan fungsi dalam companion object langsung dari kelasnya, tanpa membuat instance.
+    companion object{
+        @Volatile //Memastikan bahwa nilai variabel Instance selalu sama di semua thread
+        private var Instance: TokoDatabase? = null
+
+        fun getDatabase(context: Context): TokoDatabase {
+            return (Instance ?: synchronized(this){
+                Room.databaseBuilder(
+                    context,
+                    TokoDatabase::class.java, //Class Database
+                    "TokoDatabase" //Nama Database
+                )
+                    .build().also { Instance = it }
+            })
+        }
+    }
 }
