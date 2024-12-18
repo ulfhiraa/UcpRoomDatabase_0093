@@ -25,6 +25,8 @@ import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
@@ -32,9 +34,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.pam_ucp2.data.entity.Barang
 import com.example.pam_ucp2.ui.customwidget.TopAppBar
 import com.example.pam_ucp2.ui.viewmodel.PenyediaViewModel
+import com.example.pam_ucp2.ui.viewmodel.barang.HomeBrgViewModel
+import com.example.pam_ucp2.ui.viewmodel.barang.HomeUiState
 import kotlinx.coroutines.launch
 
 @Composable
@@ -126,7 +131,7 @@ fun BodyHomeBrgView( // untuk menampilkan data
         else -> {
             // Menampilkan daftar barang
             ListBarang(
-                ListBrg = homeUiState.listbrg,
+                ListBrg = homeUiState.listBrg,
                 onClick = {
                     onClick(it)
                     println(
