@@ -4,7 +4,7 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 
 @Entity(tableName = "barang")
-data class Barang(
+data class Barang( //tabel barang
     @PrimaryKey
     val id: Int,
     val nama: String,
