@@ -40,7 +40,7 @@ fun PilihanHomeView(
                     .fillMaxWidth()
                     .padding(bottom = 16.dp)
             ) {
-                Text(text = "Home Dosen")
+                Text(text = "Home Barang")
             }
 
             // Tombol untuk Home Supplier
