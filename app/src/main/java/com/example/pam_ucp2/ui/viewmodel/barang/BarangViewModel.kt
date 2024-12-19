@@ -22,16 +22,15 @@ class BarangViewModel(private val repositoryBrg: RepositoryBrg) : ViewModel()
         )
     }
 
-    // validasi data input pengguna
-    private fun validateFields(): Boolean{
+    private fun validateFields(): Boolean {
         val event = uiState.barangEvent
         val errorState = FormErrorState(
-            id = if (event.id.isNotEmpty()) null else "ID tidak boleh kosong",
+            id = if (event.id != 0) null else "ID tidak boleh kosong",
             nama = if (event.nama.isNotEmpty()) null else "Nama tidak boleh kosong",
             deskripsi = if (event.deskripsi.isNotEmpty()) null else "Deskripsi tidak boleh kosong",
-            harga = if (event.harga.isNotEmpty()) null else "Harga tidak boleh kosong",
-            stok = if (event.stok.isNotEmpty()) null else "Stok tidak boleh kosong",
-            namaSupplier = if (event.namaSupplier.isNotEmpty()) null else "Nama Supplier tidak boleh kosong",
+            harga = if (event.harga > 0) null else "Harga tidak boleh kosong atau negatif", // Pastikan harga > 0
+            stok = if (event.stok > 0) null else "Stok tidak boleh kosong atau negatif", // Pastikan stok > 0
+            namaSupplier = if (event.namaSupplier.isNotEmpty()) null else "Nama Supplier tidak boleh kosong"
         )
 
         uiState = uiState.copy(isEntryValid = errorState)
@@ -82,11 +81,11 @@ data class BrgUIState(
 
 // untuk menghandle atau memberikan nilai validasi apakah data benar atau tidak
 data class FormErrorState(
-    val id: String? = null,
+    val id: String? = null,  // Ganti menjadi String? untuk error message
     val nama: String? = null,
     val deskripsi: String? = null,
-    val harga: String? = null,
-    val stok: String? = null,
+    val harga: String? = null,  // Ganti menjadi String? untuk error message
+    val stok: String? = null,   // Ganti menjadi String? untuk error message
     val namaSupplier: String? = null
 ) {
     fun isValid(): Boolean {
@@ -95,13 +94,14 @@ data class FormErrorState(
     }
 }
 
+
 // data class variabel yang menyimpan data input form
 data class BarangEvent(
-    val id: String = "",
+    val id: Int = 0,
     val nama: String = "",
     val deskripsi: String = "",
-    val harga: String = "",
-    val stok: String = "",
+    val harga: Double = 0.0,
+    val stok: Int = 0,
     val namaSupplier: String = ""
 )
 
