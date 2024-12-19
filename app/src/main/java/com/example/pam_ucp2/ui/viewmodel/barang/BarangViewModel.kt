@@ -10,8 +10,8 @@ import com.example.pam_ucp2.data.repository.RepositoryBrg
 import kotlinx.coroutines.launch
 
 //  untuk mengelola input data barang, validasi form, penyimpanan data ke database, dan pengaturan pesan snackbar.
-class BarangViewModel(private val repositoryBrg: RepositoryBrg) : ViewModel(){
-
+class BarangViewModel(private val repositoryBrg: RepositoryBrg) : ViewModel()
+{
     var uiState by mutableStateOf(BrgUIState()) // event dapat berubah
 
     // memperbarui state berdasarkan input pengguna

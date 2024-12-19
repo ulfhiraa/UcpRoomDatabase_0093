@@ -17,9 +17,8 @@ import kotlinx.coroutines.flow.stateIn
 untuk mengelola status UI pada tampilan utama mahasiswa,
 termasuk menangani status loading, error, dan data mahasiswa.
 */
-class HomeBrgViewModel (
-    private val repositoryBrg: RepositoryBrg
-) : ViewModel(){
+class HomeBrgViewModel ( private val repositoryBrg: RepositoryBrg) : ViewModel()
+{
     val homeUiState: StateFlow<HomeUiState> = repositoryBrg.getAllBrg()
         .filterNotNull()
         .map {

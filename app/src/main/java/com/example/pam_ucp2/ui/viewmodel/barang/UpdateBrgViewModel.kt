@@ -15,10 +15,8 @@ import kotlinx.coroutines.launch
 import toDetailUiEvent
 
 // Menambahkan View untuk mengupdate data barang dengan validasi dan handling error.
-class UpdateBrgViewModel (
-    savedStateHandle: SavedStateHandle,
-    private val repositoryBrg: RepositoryBrg
-) : ViewModel() {
+class UpdateBrgViewModel ( savedStateHandle: SavedStateHandle, private val repositoryBrg: RepositoryBrg) : ViewModel()
+{
     var updateUIState by mutableStateOf(BrgUIState())
         private set
 
