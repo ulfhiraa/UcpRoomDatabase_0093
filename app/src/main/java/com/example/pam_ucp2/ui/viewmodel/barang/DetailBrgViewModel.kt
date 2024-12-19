@@ -3,6 +3,9 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.pam_ucp2.data.entity.Barang
 import com.example.pam_ucp2.data.repository.RepositoryBrg
+import com.example.pam_ucp2.ui.navigasi.DestinasiDetailBrg
+import com.example.pam_ucp2.ui.viewmodel.barang.BarangEvent
+import com.example.pam_ucp2.ui.viewmodel.barang.toBarangEntity
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
@@ -22,7 +25,7 @@ class DetailBrgViewModel(
     savedStateHandle: SavedStateHandle,
     private val repositoryBrg: RepositoryBrg,
 ) : ViewModel() {
-    private  val _id: String =  checkNotNull(savedStateHandle[DestinasiDetail.Id])
+    private  val _id: String =  checkNotNull(savedStateHandle[DestinasiDetailBrg.ID])
 
     val detailUiState: StateFlow<DetailUiState> = repositoryBrg.getBrg(_id)
         .filterNotNull()
