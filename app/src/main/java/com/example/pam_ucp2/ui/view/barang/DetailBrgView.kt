@@ -1,5 +1,7 @@
 package com.example.pam_ucp2.ui.view.barang
 
+import DetailBrgViewModel
+import DetailUiState
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -35,8 +37,6 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.pam_ucp2.data.entity.Barang
 import com.example.pam_ucp2.ui.customwidget.TopAppBar
 import com.example.pam_ucp2.ui.viewmodel.PenyediaViewModel
-import com.example.pam_ucp2.ui.viewmodel.barang.DetailBrgViewModel
-import com.example.pam_ucp2.ui.viewmodel.barang.DetailUiState
 import com.example.pam_ucp2.ui.viewmodel.barang.toBarangEntity
 
 @Composable
