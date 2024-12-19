@@ -8,6 +8,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.pam_ucp2.data.entity.Barang
 import com.example.pam_ucp2.data.repository.RepositoryBrg
+import com.example.pam_ucp2.ui.navigasi.DestinasiUpdateBrg
 import kotlinx.coroutines.flow.filterNotNull
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
@@ -21,7 +22,7 @@ class UpdateBrgViewModel (
     var updateUIState by mutableStateOf(BrgUIState())
         private set
 
-    private val _id: String = checkNotNull(savedStateHandle[DestinasiUpdate.id])
+    private val _id: String = checkNotNull(savedStateHandle[DestinasiUpdateBrg.ID])
 
     init {
         viewModelScope.launch {
