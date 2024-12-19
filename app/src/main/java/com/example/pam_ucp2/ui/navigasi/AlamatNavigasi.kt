@@ -1,5 +1,6 @@
 package com.example.pam_ucp2.ui.navigasi
 
+//navigasi untuk Home, Barang, dan Supplier, termasuk detail dan update dengan ID
 interface AlamatNavigasi {
     val route: String
 }
