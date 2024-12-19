@@ -24,12 +24,18 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.pam_ucp2.ui.customwidget.TopAppBar
+import com.example.pam_ucp2.ui.navigasi.AlamatNavigasi
 import com.example.pam_ucp2.ui.viewmodel.PenyediaViewModel
 import com.example.pam_ucp2.ui.viewmodel.barang.BarangEvent
 import com.example.pam_ucp2.ui.viewmodel.barang.BarangViewModel
 import com.example.pam_ucp2.ui.viewmodel.barang.BrgUIState
 import com.example.pam_ucp2.ui.viewmodel.barang.FormErrorState
 import kotlinx.coroutines.launch
+
+// menambah destinasi untuk halaman insert barang
+object DestinasiInsertBrg : AlamatNavigasi {
+    override val route: String = "iDestinasiInsertBrg"
+}
 
 @Composable
 fun InsertBrgView( // untuk menampilkan form input barang dengan snackbar

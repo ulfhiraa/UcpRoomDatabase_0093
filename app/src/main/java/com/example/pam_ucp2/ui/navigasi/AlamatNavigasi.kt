@@ -7,36 +7,36 @@ interface AlamatNavigasi {
 
 // main home
 object DestinasiMain : AlamatNavigasi {
-    override val route = "home-main"
+    override val route = "DestinasiMain"
 }
 
 // home barang
 object DestinasiHomeBrg : AlamatNavigasi {
-    override val route = "home-brg"
+    override val route = "DestinasiHomeBrg"
 }
 
 // detail barang
 object DestinasiDetailBrg : AlamatNavigasi {
-    override val route = "detail-brg"
+    override val route = "DestinasiDetailBrg"
     const val ID = "id"
     val routesWithArg = "$route/{$ID}"
 }
 
 // update barang
 object DestinasiUpdateBrg : AlamatNavigasi {
-    override val route = "update-brg"
+    override val route = "DestinasiUpdateBrg"
     const val ID = "id"
     val routesWithArg = "$route/{$ID}"
 }
 
 // home supplier
 object DestinasiHomeSpl : AlamatNavigasi {
-    override val route = "home-spl"
+    override val route = "DestinasiHomeSpl"
 }
 
 // detail supplier
 object DestinasiDetailSpl : AlamatNavigasi {
-    override val route = "detail-spl"
+    override val route = "DestinasiDetailSpl"
     const val ID = "id"
     val routesWithArg = "$route/{$ID}"
 }
