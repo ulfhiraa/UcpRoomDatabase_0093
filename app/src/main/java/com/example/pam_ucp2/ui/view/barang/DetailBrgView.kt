@@ -41,14 +41,13 @@ import com.example.pam_ucp2.ui.viewmodel.barang.toBarangEntity
 
 @Composable
 fun DetailBrgView(
-// menampilkan detail data barang dengan opsi untuk back ke halaman sebelumnya, mengedit dan menghapus data
     modifier: Modifier = Modifier,
     viewModel: DetailBrgViewModel = viewModel(factory = PenyediaViewModel.Factory),
     onBack: () -> Unit = { },
     onEditClick: (Int) -> Unit = { },
     onDeleteClick: () -> Unit = { }
-){
-    Scaffold (
+) {
+    Scaffold(
         topBar = {
             TopAppBar(
                 judul = "Detail Barang",
@@ -58,9 +57,12 @@ fun DetailBrgView(
             )
         },
         floatingActionButton = {
+            val barangId = viewModel.detailUiState.value.detailUiEvent?.id ?: 0
             FloatingActionButton(
                 onClick = {
-                    onEditClick(viewModel.detailUiState.value.detailUiEvent.id)
+                    if (barangId != 0) {
+                        onEditClick(barangId)
+                    }
                 },
                 shape = MaterialTheme.shapes.medium,
                 modifier = Modifier.padding(16.dp)
@@ -71,7 +73,7 @@ fun DetailBrgView(
                 )
             }
         }
-    ){  innerPadding ->
+    ) { innerPadding ->
         val detailUiState by viewModel.detailUiState.collectAsState()
 
         BodyDetailBrg(
@@ -85,31 +87,33 @@ fun DetailBrgView(
     }
 }
 
+
 @Composable
-fun BodyDetailBrg( // untuk menampilkan tampilan detail barang
+fun BodyDetailBrg(
     modifier: Modifier = Modifier,
-    detailUiState: DetailUiState = DetailUiState(), // isLoading, isError, ada data atau tidak ada data
-    onDeleteClick: () -> Unit = { } // Fungsi callback yang akan dipanggil saat pengguna mengonfirmasi penghapusan data.
-){
+    detailUiState: DetailUiState = DetailUiState(),
+    onDeleteClick: () -> Unit = { }
+) {
     var deleteConfirmationRequired by rememberSaveable { mutableStateOf(false) }
     when {
         detailUiState.isLoading -> {
             Box(
                 modifier = modifier.fillMaxSize(),
                 contentAlignment = Alignment.Center
-            ){
+            ) {
                 CircularProgressIndicator() // tampilkan loading
             }
         }
 
         detailUiState.isUiEventNotEmpty -> {
-            Column (
+            val barang = detailUiState.detailUiEvent.toBarangEntity()
+            Column(
                 modifier = modifier
                     .fillMaxWidth()
                     .padding(16.dp)
-            ){
+            ) {
                 ItemDetailBrg(
-                    barang = detailUiState.detailUiEvent.toBarangEntity(),
+                    barang = barang,
                     modifier = Modifier
                 )
                 Spacer(modifier = Modifier.padding(8.dp))
@@ -139,7 +143,7 @@ fun BodyDetailBrg( // untuk menampilkan tampilan detail barang
             Box(
                 modifier = modifier.fillMaxWidth(),
                 contentAlignment = Alignment.Center
-            ){
+            ) {
                 Text(
                     text = "Data tidak ditemukan",
                     modifier = Modifier.padding(16.dp)
@@ -164,9 +168,6 @@ fun ItemDetailBrg( // menampilkan informasi detail barang pada card
         Column (
             modifier = Modifier.padding(16.dp)
         ) {
-            ComponentDetailBrg(judul = "Id", isinya = barang.id)
-            Spacer(modifier = Modifier.padding(4.dp))
-
             ComponentDetailBrg(judul = "Nama", isinya = barang.nama)
             Spacer(modifier = Modifier.padding(4.dp))
 

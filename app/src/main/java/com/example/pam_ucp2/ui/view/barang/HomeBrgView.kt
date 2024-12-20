@@ -247,7 +247,6 @@ fun CardBrg( // untuk menampilkan informasi barang(nama, deskripsi, harga, stok,
                     fontWeight = FontWeight.Bold,
                 )
             }
-
         }
     }
 }

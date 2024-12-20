@@ -34,7 +34,7 @@ import kotlinx.coroutines.launch
 
 // menambah destinasi untuk halaman insert barang
 object DestinasiInsertBrg : AlamatNavigasi {
-    override val route: String = "iDestinasiInsertBrg"
+    override val route: String = "DestinasiInsertBrg"
 }
 
 @Composable
@@ -220,9 +220,9 @@ fun FormBarang(
 //                }
 //            }
 //        }
-        Text(
-            text = errorState.namaSupplier ?: "",
-            color = Color.Red
-        )
+//        Text(
+//            text = errorState.namaSupplier ?: "",
+//            color = Color.Red
+//        )
     }
 }
