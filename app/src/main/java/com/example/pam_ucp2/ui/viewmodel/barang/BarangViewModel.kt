@@ -104,7 +104,7 @@ data class BarangEvent(
 
 // Menyimpan input form ke dalam entity
 fun BarangEvent.toBarangEntity(): Barang = Barang(
-    id = 0,  // Pastikan ID tetap default 0, karena Room akan auto-generate
+    id = id,
     nama = nama,
     deskripsi = deskripsi,
     harga = harga,
