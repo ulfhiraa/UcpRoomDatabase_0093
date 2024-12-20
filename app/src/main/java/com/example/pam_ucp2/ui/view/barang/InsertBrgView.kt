@@ -134,7 +134,7 @@ fun FormBarang(
             onValueChange = {
                 onValueChange(barangEvent.copy(nama = it))
             },
-            label = { Text("Nama") },
+            label = { Text("Nama Barang") },
             isError = errorState.nama != null,
             placeholder = { Text("Masukkan nama") },
         )
@@ -159,7 +159,7 @@ fun FormBarang(
             color = Color.Red
         )
 
-        // TEXTFIELD HARGA
+        // TEXTFIELD HARGA BARANG
         OutlinedTextField(
             modifier = Modifier.fillMaxWidth(),
             value = if (barangEvent.harga == 0.0) "" else barangEvent.harga.toString(), // Konversi Double ke String
@@ -169,7 +169,7 @@ fun FormBarang(
                     onValueChange(barangEvent.copy(harga = newHarga)) // Update harga
                 }
             },
-            label = { Text("Harga") },
+            label = { Text("Harga Barang") },
             isError = errorState.harga != null,
             placeholder = { Text("Masukkan harga") },
             keyboardOptions = KeyboardOptions(
@@ -181,6 +181,10 @@ fun FormBarang(
             color = Color.Red
         )
 
+        // TEXT STOK
+        Spacer(modifier = Modifier.height(16.dp))
+        Text(text = "Stok")
+
         // TEXTFIELD STOK
         OutlinedTextField(
             modifier = Modifier.fillMaxWidth(),
@@ -191,7 +195,7 @@ fun FormBarang(
                     onValueChange(barangEvent.copy(stok = newStok)) // Update stok
                 }
             },
-            label = { Text("Stok") },
+            label = { Text("Stok Barang") },
             isError = errorState.stok != null,
             placeholder = { Text("Masukkan stok") },
             keyboardOptions = KeyboardOptions(
@@ -202,9 +206,6 @@ fun FormBarang(
             text = errorState.stok ?: "",
             color = Color.Red
         )
-
-        Spacer(modifier = Modifier.height(16.dp))
-        Text(text = "Supplier")
 
         // DROPDOWN NAMA SUPPLIER
         OutlinedTextField(
