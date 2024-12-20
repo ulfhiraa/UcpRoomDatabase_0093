@@ -203,7 +203,7 @@ fun CardBrg( // untuk menampilkan informasi barang(nama, deskripsi, harga, stok,
                 Icon(imageVector = Icons.Filled.DateRange, contentDescription = "")
                 Spacer(modifier = Modifier.padding(4.dp))
                 Text(
-                    text = brg.id,
+                    text = brg.id.toString(), // agar tipe data numerik dapat dikonversi menjadi String
                     fontWeight = FontWeight.Bold,
                     fontSize = 16.sp
                 )
@@ -230,7 +230,7 @@ fun CardBrg( // untuk menampilkan informasi barang(nama, deskripsi, harga, stok,
                 Icon(imageVector = Icons.Filled.Home, contentDescription = "")
                 Spacer(modifier = Modifier.padding(4.dp))
                 Text(
-                    text = brg.harga,
+                    text = brg.harga.toString(), // agar tipe data numerik dapat dikonversi menjadi String
                     fontWeight = FontWeight.Bold,
                 )
             }
@@ -243,7 +243,7 @@ fun CardBrg( // untuk menampilkan informasi barang(nama, deskripsi, harga, stok,
                 Icon(imageVector = Icons.Filled.Home, contentDescription = "")
                 Spacer(modifier = Modifier.padding(4.dp))
                 Text(
-                    text = brg.stok,
+                    text = brg.stok.toString(), // agar tipe data numerik dapat dikonversi menjadi String
                     fontWeight = FontWeight.Bold,
                 )
             }
