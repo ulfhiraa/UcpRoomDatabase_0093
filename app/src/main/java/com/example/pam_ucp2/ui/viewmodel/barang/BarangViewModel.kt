@@ -25,7 +25,6 @@ class BarangViewModel(private val repositoryBrg: RepositoryBrg) : ViewModel()
     private fun validateFields(): Boolean {
         val event = uiState.barangEvent
         val errorState = FormErrorState(
-            id = if (event.id != 0) null else "ID tidak boleh kosong",
             nama = if (event.nama.isNotEmpty()) null else "Nama tidak boleh kosong",
             deskripsi = if (event.deskripsi.isNotEmpty()) null else "Deskripsi tidak boleh kosong",
             harga = if (event.harga > 0) null else "Harga tidak boleh kosong atau negatif", // Pastikan harga > 0
@@ -81,15 +80,14 @@ data class BrgUIState(
 
 // untuk menghandle atau memberikan nilai validasi apakah data benar atau tidak
 data class FormErrorState(
-    val id: String? = null,  // Ganti menjadi String? untuk error message
     val nama: String? = null,
     val deskripsi: String? = null,
-    val harga: String? = null,  // Ganti menjadi String? untuk error message
-    val stok: String? = null,   // Ganti menjadi String? untuk error message
+    val harga: String? = null,
+    val stok: String? = null,
     val namaSupplier: String? = null
 ) {
     fun isValid(): Boolean {
-        return id == null && nama == null && deskripsi == null &&
+        return nama == null && deskripsi == null &&
                 harga == null && stok == null && namaSupplier == null
     }
 }
@@ -97,7 +95,6 @@ data class FormErrorState(
 
 // data class variabel yang menyimpan data input form
 data class BarangEvent(
-    val id: Int = 0,
     val nama: String = "",
     val deskripsi: String = "",
     val harga: Double = 0.0,
@@ -107,7 +104,6 @@ data class BarangEvent(
 
 // Menyimpan input form ke dalam entity
 fun BarangEvent.toBarangEntity(): Barang = Barang(
-    id = id,
     nama = nama,
     deskripsi = deskripsi,
     harga = harga,
