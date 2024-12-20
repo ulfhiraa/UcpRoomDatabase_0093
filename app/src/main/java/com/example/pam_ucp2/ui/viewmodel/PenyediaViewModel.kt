@@ -10,6 +10,8 @@ import com.example.pam_ucp2.TokoApp
 import com.example.pam_ucp2.ui.viewmodel.barang.BarangViewModel
 import com.example.pam_ucp2.ui.viewmodel.barang.HomeBrgViewModel
 import com.example.pam_ucp2.ui.viewmodel.barang.UpdateBrgViewModel
+import com.example.pam_ucp2.ui.viewmodel.supplier.HomeSplViewModel
+import com.example.pam_ucp2.ui.viewmodel.supplier.SupplierViewModel
 
 
 object PenyediaViewModel {
@@ -41,18 +43,18 @@ object PenyediaViewModel {
             )
         }
 
-//        // SUPPLIER
-//        initializer {
-//            SupplierViewModel(
-//                TokoApp().containerApp.repositorySpl
-//            )
-//        }
-//
-//        initializer {
-//            HomeSplViewModel (
-//                TokoApp().containerApp.repositorySpl
-//            )
-//        }
+        // SUPPLIER
+        initializer {
+            SupplierViewModel(
+                TokoApp().containerApp.repositorySpl
+            )
+        }
+
+        initializer {
+            HomeSplViewModel (
+                TokoApp().containerApp.repositorySpl
+            )
+        }
     }
 }
 
