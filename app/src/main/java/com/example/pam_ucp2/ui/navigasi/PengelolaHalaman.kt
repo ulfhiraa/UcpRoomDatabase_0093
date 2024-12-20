@@ -28,6 +28,7 @@ fun PengelolaHalaman( // untuk mengelola navigasi antar halaman home, barang dan
         navController = navController,
         startDestination = DestinasiMain.route) {
 
+        // MAIN PAGE
         composable(
             route = DestinasiMain.route
         ){
@@ -46,7 +47,11 @@ fun PengelolaHalaman( // untuk mengelola navigasi antar halaman home, barang dan
             route = DestinasiHomeBrg.route
         ) {
             HomeBrgView(
-                onDetailClick = {
+                onDetailClick = { id ->
+                    navController.navigate("${DestinasiDetailBrg.route}/$id")
+                    println(
+                        "PengelolaHalaman: id = $id"
+                    )
                 },
                 onAddBrg = {
                     navController.navigate(DestinasiInsertBrg.route)
@@ -63,7 +68,11 @@ fun PengelolaHalaman( // untuk mengelola navigasi antar halaman home, barang dan
             route = DestinasiHomeSpl.route
         ) {
             HomeSplView(
-                onDetailClick = {
+                onDetailClick = { id ->
+                    navController.navigate("${DestinasiDetailSpl.route}/$id")
+                    println(
+                        "PengelolaHalaman: id = $id"
+                    )
                 },
                 onAddSpl = {
                     navController.navigate(DestinasiInsertSpl.route)
