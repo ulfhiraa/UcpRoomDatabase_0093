@@ -206,7 +206,7 @@ fun ComponentDetailBrg( // menampilkan detail informasi brgk
         )
 
         Text(
-            text = isinya,
+            text = isinya.toString(),
             fontSize = 20.sp,
             fontWeight = FontWeight.Bold
         )
