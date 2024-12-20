@@ -47,15 +47,18 @@ fun HomeBrgView( // untuk tampilan halaman utama daftar barang
     viewModel: HomeBrgViewModel = viewModel(factory = PenyediaViewModel.Factory),
     onAddBrg: () -> Unit = { }, // fungsi yang dipanggil saat btn Tambah Barang diklik.
     onDetailClick: (String) -> Unit = { }, // Fungsi yang dipanggil saat Barang di daftar diklik.
+    onBack: () -> Unit,
     modifier: Modifier = Modifier // mengatur layout
 ){
     Scaffold ( // Agar UI konsisten
         topBar = {
             TopAppBar(
                 judul = "Daftar Barang",
-                showBackButton = false,
-                onBack = { },
+                showBackButton = true,
+                onBack = onBack,
                 modifier = Modifier
+                    .padding(32.dp)
+                    .fillMaxWidth()
             )
         },
         floatingActionButton = { // tombol aksi untuk add brg
