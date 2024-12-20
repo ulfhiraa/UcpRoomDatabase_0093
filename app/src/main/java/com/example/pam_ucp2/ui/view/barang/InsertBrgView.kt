@@ -160,32 +160,37 @@ fun FormBarang(
         // TEXTFIELD HARGA
         OutlinedTextField(
             modifier = Modifier.fillMaxWidth(),
-            value = barangEvent.harga,
-            onValueChange = {
-                onValueChange(barangEvent.copy(harga = it))
+            value = if (barangEvent.harga == 0.0) "" else barangEvent.harga.toString(), // Konversi Double ke String
+            onValueChange = { inputValue ->
+                val newHarga = inputValue.toDoubleOrNull() // Konversi String ke Double
+                if (newHarga != null) {
+                    onValueChange(barangEvent.copy(harga = newHarga)) // Update harga
+                }
             },
             label = { Text("Harga") },
             isError = errorState.harga != null,
             placeholder = { Text("Masukkan harga") },
         )
-        Text( // validasi error pada text field
+        Text(
             text = errorState.harga ?: "",
             color = Color.Red
         )
 
-
         // TEXTFIELD STOK
         OutlinedTextField(
             modifier = Modifier.fillMaxWidth(),
-            value = barangEvent.stok,
-            onValueChange = {
-                onValueChange(barangEvent.copy(stok = it))
+            value = if (barangEvent.stok == 0) "" else barangEvent.stok.toString(), // Konversi Int ke String
+            onValueChange = { inputValue ->
+                val newStok = inputValue.toIntOrNull() // Konversi String ke Int
+                if (newStok != null) {
+                    onValueChange(barangEvent.copy(stok = newStok)) // Update stok
+                }
             },
             label = { Text("Stok") },
             isError = errorState.stok != null,
             placeholder = { Text("Masukkan stok") },
         )
-        Text( // validasi error pada text field
+        Text(
             text = errorState.stok ?: "",
             color = Color.Red
         )
