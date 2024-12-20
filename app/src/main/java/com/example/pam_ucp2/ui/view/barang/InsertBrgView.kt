@@ -207,30 +207,19 @@ fun FormBarang(
         Text(text = "Supplier")
 
         // DROPDOWN NAMA SUPPLIER
-        // Menambahkan form input barang dengan validasi dan dropdown supplier
-//        Row (
-//            modifier = modifier.fillMaxWidth()
-//        ){
-//            namaSupplier.forEach{ namaSupplier ->
-//                Row (
-//                    verticalAlignment = Alignment.CenterVertically,
-//                    horizontalArrangement = Arrangement.Start
-//                ){
-//                    RadioButton(
-//                        selected = barangEvent.namaSupplier == namaSupplier,
-//                        onClick = {
-//                            onValueChange(barangEvent.copy(namaSupplier = namaSupplier))
-//                        },
-//                    )
-//                    Text(
-//                        text = namaSupplier,
-//                    )
-//                }
-//            }
-//        }
-//        Text(
-//            text = errorState.namaSupplier ?: "",
-//            color = Color.Red
-//        )
+        OutlinedTextField(
+            modifier = Modifier.fillMaxWidth(),
+            value = barangEvent.namaSupplier,
+            onValueChange = {
+                onValueChange(barangEvent.copy(namaSupplier = it))
+            },
+            label = { Text("Nama Supplier") },
+            isError = errorState.namaSupplier != null,
+            placeholder = { Text("Masukkan nama supplier") },
+        )
+        Text(
+            text = errorState.namaSupplier ?: "",
+            color = Color.Red
+        )
     }
 }
