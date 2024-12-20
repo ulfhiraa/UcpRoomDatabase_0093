@@ -190,7 +190,8 @@ fun ItemDetailBrg( // menampilkan informasi detail barang pada card
 fun ComponentDetailBrg( // menampilkan detail informasi brgk
     modifier: Modifier = Modifier,
     judul: String, // menampilkan judul dari informasi
-    isinya: String // menampilkan isi dari informasi
+    isinya: Any // menampilkan isi dari informasi
+    // any memungkinkan untuk menerima tipe Int, Double, String.
 ){
     Column (
         modifier = modifier.fillMaxWidth(),
