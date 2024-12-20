@@ -47,7 +47,6 @@ class HomeBrgViewModel ( private val repositoryBrg: RepositoryBrg) : ViewModel()
                 isLoading = true,
             )
         )
-
 }
 
 // state; mengubah tampilan
