@@ -141,22 +141,6 @@ fun FormBarang(
             color = Color.Red
         )
 
-        // TEXTFIELD ID
-        OutlinedTextField(
-            modifier = Modifier.fillMaxWidth(),
-            value = barangEvent.id,
-            onValueChange = {
-                onValueChange(barangEvent.copy(id = it))
-            },
-            label = { Text("ID") },
-            isError = errorState.id != null,
-            placeholder = { Text("Masukkan ID") },
-        )
-        Text( // validasi error pada text field
-            text = errorState.id ?: "",
-            color = Color.Red
-        )
-
         // TEXTFIELD DESKRIPSI
         OutlinedTextField(
             modifier = Modifier.fillMaxWidth(),
