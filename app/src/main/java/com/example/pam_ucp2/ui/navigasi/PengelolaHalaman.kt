@@ -15,6 +15,7 @@ import com.example.pam_ucp2.ui.view.barang.HomeBrgView
 import com.example.pam_ucp2.ui.view.barang.InsertBrgView
 import com.example.pam_ucp2.ui.view.barang.UpdateBrgView
 import com.example.pam_ucp2.ui.view.supplier.DestinasiInsertSpl
+import com.example.pam_ucp2.ui.view.supplier.DetailSplView
 import com.example.pam_ucp2.ui.view.supplier.HomeSplView
 import com.example.pam_ucp2.ui.view.supplier.InsertSplView
 
@@ -161,17 +162,11 @@ fun PengelolaHalaman( // untuk mengelola navigasi antar halaman home, barang dan
         ){
             val id = it.arguments?.getString(DestinasiDetailSpl.ID)
             id?.let { id ->
-                DetailBrgView(
+                DetailSplView(
                     onBack = {
                         navController.popBackStack()
                     },
-                    onEditClick = {
-                        navController.navigate("${DestinasiDetailSpl.route}/$it")
-                    },
-                    modifier = modifier,
-                    onDeleteClick = {
-                        navController.popBackStack()
-                    }
+                    modifier = modifier
                 )
             }
         }
