@@ -87,7 +87,6 @@ fun DetailBrgView(
     }
 }
 
-
 @Composable
 fun BodyDetailBrg(
     modifier: Modifier = Modifier,
