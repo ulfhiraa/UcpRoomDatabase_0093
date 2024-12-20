@@ -2,6 +2,16 @@ package com.example.pam_ucp2.ui.viewmodel.supplier
 
 import com.example.pam_ucp2.data.entity.Supplier
 
+
+// event adalah aksi yang merubah kondisi
+// state adalah keadaan yang terjadi setelah ada trigger dari event
+// Menambahkan data class SplUIState untuk merepresentasikan state UI, termasuk event, validasi input, dan pesan snackbar.
+data class SplUIState(
+    val supplierEvent: SupplierEvent = SupplierEvent(),
+    val isEntryValid: FormErrorState = FormErrorState(),
+    val snackBarMessage: String? = null,
+)
+
 // untuk menghandle atau memberikan nilai validasi apakah data benar atau tidak
 data class FormErrorState(
     val nama: String? = null,
@@ -23,7 +33,7 @@ data class SupplierEvent(
 
 // Menyimpan input form ke dalam entity
 fun SupplierEvent.toSupplierEntity(): Supplier = Supplier(
-    id = id,
+    id = 0, // default 0 karna auto increment
     nama = nama,
     kontak = kontak,
     alamat = alamat
