@@ -181,10 +181,6 @@ fun FormBarang(
             color = Color.Red
         )
 
-        // TEXT STOK
-        Spacer(modifier = Modifier.height(16.dp))
-        Text(text = "Stok")
-
         // TEXTFIELD STOK
         OutlinedTextField(
             modifier = Modifier.fillMaxWidth(),
