@@ -14,6 +14,9 @@ import com.example.pam_ucp2.ui.view.barang.DetailBrgView
 import com.example.pam_ucp2.ui.view.barang.HomeBrgView
 import com.example.pam_ucp2.ui.view.barang.InsertBrgView
 import com.example.pam_ucp2.ui.view.barang.UpdateBrgView
+import com.example.pam_ucp2.ui.view.supplier.DestinasiInsertSpl
+import com.example.pam_ucp2.ui.view.supplier.HomeSplView
+import com.example.pam_ucp2.ui.view.supplier.InsertSplView
 
 @Composable
 fun PengelolaHalaman( // untuk mengelola navigasi antar halaman home, barang dan supplier
@@ -24,8 +27,6 @@ fun PengelolaHalaman( // untuk mengelola navigasi antar halaman home, barang dan
         navController = navController,
         startDestination = DestinasiMain.route) {
 
-  //  startDestination = DestinasiMain.route) {
-
         composable(
             route = DestinasiMain.route
         ){
@@ -34,7 +35,7 @@ fun PengelolaHalaman( // untuk mengelola navigasi antar halaman home, barang dan
                     navController.navigate(DestinasiHomeBrg.route)
                 },
                 onSupplierClick = {
-                   // navController.navigate(DestinasiSplHome.route)
+                   navController.navigate(DestinasiHomeSpl.route)
                 }
             )
         }
@@ -56,19 +57,22 @@ fun PengelolaHalaman( // untuk mengelola navigasi antar halaman home, barang dan
             )
         }
 
-//        // Home Supplier
-//        composable(
-//            route = DestinasiSplHome.route
-//        ) {
-//            HomeSplView(
-//                onDetailClick = {
-//                },
-//                onAddSpl = {
-//                    navController.navigate(DestinasiInsertSpl.route)
-//                },
-//                modifier = modifier
-//            )
-//        }
+        // Home Supplier
+        composable(
+            route = DestinasiHomeSpl.route
+        ) {
+            HomeSplView(
+                onDetailClick = {
+                },
+                onAddSpl = {
+                    navController.navigate(DestinasiInsertSpl.route)
+                },
+                onBack = {
+                    navController.popBackStack()
+                },
+                modifier = modifier
+            )
+        }
 
         // Insert Barang
         composable(
@@ -132,18 +136,18 @@ fun PengelolaHalaman( // untuk mengelola navigasi antar halaman home, barang dan
         }
 
         // Insert Supplier
-//        composable(
-//            route = DestinasiInsertSpl.route
-//        ) {
-//            InsertSplView(
-//                onBack = {
-//                    navController.popBackStack()
-//                },
-//                onNavigate = {
-//                    navController.popBackStack()
-//                },
-//                modifier = modifier,
-//            )
-//        }
+        composable(
+            route = DestinasiInsertSpl.route
+        ) {
+            InsertSplView(
+                onBack = {
+                    navController.popBackStack()
+                },
+                onNavigate = {
+                    navController.popBackStack()
+                },
+                modifier = modifier,
+            )
+        }
     }
 }
