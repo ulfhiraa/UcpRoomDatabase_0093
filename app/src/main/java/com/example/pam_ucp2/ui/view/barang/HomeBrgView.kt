@@ -123,7 +123,7 @@ fun BodyHomeBrgView( // untuk menampilkan data
                 contentAlignment = Alignment.Center
             ){
                 Text(
-                    text = "Tidak ada data Barang.",
+                    text = "Tidak Ada Data Barang.",
                     fontSize = 18.sp,
                     fontWeight = FontWeight.Bold,
                     modifier = Modifier.padding(16.dp)
