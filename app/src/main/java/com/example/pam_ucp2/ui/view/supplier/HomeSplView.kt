@@ -10,17 +10,23 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.DateRange
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.Person
 import androidx.compose.material3.Card
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Scaffold
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
@@ -28,20 +34,55 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.pam_ucp2.data.entity.Supplier
-import com.example.pam_ucp2.ui.viewmodel.barang.HomeUiState
+import com.example.pam_ucp2.ui.customwidget.TopAppBar
+import com.example.pam_ucp2.ui.viewmodel.PenyediaViewModel
+import com.example.pam_ucp2.ui.viewmodel.supplier.HomeSplViewModel
+import com.example.pam_ucp2.ui.viewmodel.supplier.HomeUiStateSpl
 import kotlinx.coroutines.launch
+
+@Composable
+fun HomeSplView( // untuk tampilan halaman utama daftar supplier
+    viewModel: HomeSplViewModel = viewModel(factory = PenyediaViewModel.Factory),
+    onDetailClick: (String) -> Unit = { }, // Fungsi yang dipanggil saat supplier di daftar diklik.
+    onBack: () -> Unit,
+    modifier: Modifier = Modifier // mengatur layout
+){
+    Scaffold ( // Agar UI konsisten
+        topBar = {
+            TopAppBar(
+                judul = "Daftar Supplier",
+                showBackButton = true,
+                onBack = onBack,
+                modifier = Modifier
+                    .padding(32.dp)
+                    .fillMaxWidth()
+            )
+        }
+    ){ innerPadding ->
+        val homeUiStateSpl by viewModel.homeUiState.collectAsState()
+
+        BodyHomeSplView(
+            modifier = Modifier.padding(innerPadding),
+            homeUiStateSpl = homeUiStateSpl,
+            onClick = {
+                onDetailClick(it)
+            },
+        )
+    }
+}
 
 @Composable //  untuk menampilkan status UI (loading, error, data kosong, atau daftar supplier dengan tampilan dinamis dan Snackbar.
 fun BodyHomeSplView( // untuk menampilkan data
-    homeUiState: HomeUiState, // berisi status UI. apakah data sedang loading, ada error atau sudah ada data
+    homeUiStateSpl: HomeUiStateSpl, // berisi status UI. apakah data sedang loading, ada error atau sudah ada data
     onClick: (String) -> Unit = { },
     modifier: Modifier = Modifier // mengatur properti layout
 ){
     val coroutineScope = rememberCoroutineScope()
     val snackbarHostState = remember { SnackbarHostState() } //Snackbar state
     when {
-        homeUiState.isLoading -> {
+        homeUiStateSpl.isLoading -> {
             // Menampilkan indikator loading
             Box(
                 modifier = modifier.fillMaxSize(),
@@ -51,10 +92,10 @@ fun BodyHomeSplView( // untuk menampilkan data
             }
         }
 
-        homeUiState.isError -> {
+        homeUiStateSpl.isError -> {
             // menampilkan pesan error
-            LaunchedEffect(homeUiState.errorMessage) {
-                homeUiState.errorMessage?.let { message ->
+            LaunchedEffect(homeUiStateSpl.errorMessage) {
+                homeUiStateSpl.errorMessage?.let { message ->
                     coroutineScope.launch {
                         snackbarHostState.showSnackbar(message) // Tampilkan Snackbar
                     }
@@ -62,7 +103,7 @@ fun BodyHomeSplView( // untuk menampilkan data
             }
         }
 
-        homeUiState.listSpl.isEmpty() -> {
+        homeUiStateSpl.listSpl.isEmpty() -> {
             // menampilkan pesan jika data kosong
             Box(
                 modifier = modifier.fillMaxSize(),
@@ -80,7 +121,7 @@ fun BodyHomeSplView( // untuk menampilkan data
         else -> {
             // Menampilkan daftar supplier
             ListSupplier(
-                ListSpl = homeUiState.listBrg,
+                ListSpl = homeUiStateSpl.listSpl,
                 onClick = {
                     onClick(it)
                     println(
