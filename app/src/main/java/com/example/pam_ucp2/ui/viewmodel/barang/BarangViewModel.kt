@@ -95,6 +95,7 @@ data class FormErrorState(
 
 // data class variabel yang menyimpan data input form
 data class BarangEvent(
+    val id: Int = 0,  // Default 0 karena ID auto increment
     val nama: String = "",
     val deskripsi: String = "",
     val harga: Double = 0.0,
@@ -104,6 +105,7 @@ data class BarangEvent(
 
 // Menyimpan input form ke dalam entity
 fun BarangEvent.toBarangEntity(): Barang = Barang(
+    id = 0,  // Pastikan ID tetap default 0, karena Room akan auto-generate
     nama = nama,
     deskripsi = deskripsi,
     harga = harga,
