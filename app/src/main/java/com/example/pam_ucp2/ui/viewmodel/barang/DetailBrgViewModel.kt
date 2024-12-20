@@ -84,6 +84,7 @@ data class DetailUiState(
 // memindahkan data dari entity ke ui
 fun Barang.toDetailUiEvent(): BarangEvent {
     return BarangEvent(
+        id = id,
         nama = nama,
         deskripsi = deskripsi,
         harga = harga,
