@@ -20,7 +20,7 @@ class HomeSplViewModel ( private val repositorySpl: RepositorySpl) : ViewModel()
         .filterNotNull()
         .map {
             HomeUiStateSpl(
-                listBrg = it.toList(),
+                listSpl = it.toList(),
                 isLoading = false,
             )
         }
