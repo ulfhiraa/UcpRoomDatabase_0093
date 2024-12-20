@@ -24,6 +24,8 @@ fun PengelolaHalaman( // untuk mengelola navigasi antar halaman home, barang dan
         navController = navController,
         startDestination = DestinasiMain.route) {
 
+  //  startDestination = DestinasiMain.route) {
+
         composable(
             route = DestinasiMain.route
         ){
@@ -32,7 +34,7 @@ fun PengelolaHalaman( // untuk mengelola navigasi antar halaman home, barang dan
                     navController.navigate(DestinasiHomeBrg.route)
                 },
                 onSupplierClick = {
-                    navController.navigate(DestinasiSplHome.route)
+                   // navController.navigate(DestinasiSplHome.route)
                 }
             )
         }
@@ -47,23 +49,26 @@ fun PengelolaHalaman( // untuk mengelola navigasi antar halaman home, barang dan
                 onAddBrg = {
                     navController.navigate(DestinasiInsertBrg.route)
                 },
+                onBack = {
+                    navController.popBackStack()
+                },
                 modifier = modifier
             )
         }
 
-        // Home Supplier
-        composable(
-            route = DestinasiSplHome.route
-        ) {
-            HomeSplView(
-                onDetailClick = {
-                },
-                onAddSpl = {
-                    navController.navigate(DestinasiInsertSpl.route)
-                },
-                modifier = modifier
-            )
-        }
+//        // Home Supplier
+//        composable(
+//            route = DestinasiSplHome.route
+//        ) {
+//            HomeSplView(
+//                onDetailClick = {
+//                },
+//                onAddSpl = {
+//                    navController.navigate(DestinasiInsertSpl.route)
+//                },
+//                modifier = modifier
+//            )
+//        }
 
         // Insert Barang
         composable(
@@ -127,18 +132,18 @@ fun PengelolaHalaman( // untuk mengelola navigasi antar halaman home, barang dan
         }
 
         // Insert Supplier
-        composable(
-            route = DestinasiInsertSpl.route
-        ) {
-            InsertSplView(
-                onBack = {
-                    navController.popBackStack()
-                },
-                onNavigate = {
-                    navController.popBackStack()
-                },
-                modifier = modifier,
-            )
-        }
+//        composable(
+//            route = DestinasiInsertSpl.route
+//        ) {
+//            InsertSplView(
+//                onBack = {
+//                    navController.popBackStack()
+//                },
+//                onNavigate = {
+//                    navController.popBackStack()
+//                },
+//                modifier = modifier,
+//            )
+//        }
     }
 }
