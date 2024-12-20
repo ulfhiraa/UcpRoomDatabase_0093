@@ -188,7 +188,7 @@ fun ItemDetailBrg( // menampilkan informasi detail barang pada card
 }
 
 @Composable
-fun ComponentDetailBrg( // menampilkan detail informasi brgk
+fun ComponentDetailBrg( // menampilkan detail informasi brg
     modifier: Modifier = Modifier,
     judul: String, // menampilkan judul dari informasi
     isinya: Any // menampilkan isi dari informasi
