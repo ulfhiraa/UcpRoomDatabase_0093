@@ -26,12 +26,18 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.pam_ucp2.ui.customwidget.TopAppBar
+import com.example.pam_ucp2.ui.navigasi.AlamatNavigasi
 import com.example.pam_ucp2.ui.viewmodel.PenyediaViewModel
 import com.example.pam_ucp2.ui.viewmodel.supplier.FormErrorState
 import com.example.pam_ucp2.ui.viewmodel.supplier.SplUIState
 import com.example.pam_ucp2.ui.viewmodel.supplier.SupplierEvent
 import com.example.pam_ucp2.ui.viewmodel.supplier.SupplierViewModel
 import kotlinx.coroutines.launch
+
+// menambah destinasi untuk halaman insert supplier
+object DestinasiInsertSpl : AlamatNavigasi {
+    override val route: String = "DestinasiInsertSpl"
+}
 
 @Composable
 fun InsertSplView( // untuk menampilkan form input supplier dengan snackbar
