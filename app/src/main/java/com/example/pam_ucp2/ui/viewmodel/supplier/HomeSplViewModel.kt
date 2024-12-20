@@ -16,21 +16,21 @@ import kotlinx.coroutines.flow.stateIn
 // untuk mengelola status UI pada tampilan utama supplier, termasuk menangani status loading, error, dan data supplier.
 class HomeSplViewModel ( private val repositorySpl: RepositorySpl) : ViewModel()
 {
-    val homeUiState: StateFlow<HomeUiState> = repositorySpl.getAllSpl()
+    val homeUiState: StateFlow<HomeUiStateSpl> = repositorySpl.getAllSpl()
         .filterNotNull()
         .map {
-            HomeUiState(
+            HomeUiStateSpl(
                 listBrg = it.toList(),
                 isLoading = false,
             )
         }
         .onStart {
-            emit(HomeUiState(isLoading = true))
+            emit(HomeUiStateSpl(isLoading = true))
             delay(900)
         }
         .catch {
             emit(
-                HomeUiState(
+                HomeUiStateSpl(
                     isLoading = false,
                     isError = true,
                     errorMessage = it.message ?: "Terjadi Kesalahan"
@@ -40,15 +40,15 @@ class HomeSplViewModel ( private val repositorySpl: RepositorySpl) : ViewModel()
         .stateIn(
             scope = viewModelScope,
             started = SharingStarted.WhileSubscribed(5000),
-            initialValue = HomeUiState(
+            initialValue = HomeUiStateSpl(
                 isLoading = true,
             )
         )
 }
 
 // state; untuk mengubah tampilan
-data class HomeUiState(
-    val listBrg: List<Supplier> = listOf(),
+data class HomeUiStateSpl(
+    val listSpl: List<Supplier> = listOf(),
     val isLoading: Boolean = false,
     val isError: Boolean = false,
     val errorMessage: String = ""
