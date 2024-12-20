@@ -149,5 +149,31 @@ fun PengelolaHalaman( // untuk mengelola navigasi antar halaman home, barang dan
                 modifier = modifier,
             )
         }
+
+        // Detail Supplier
+        composable(
+            DestinasiDetailSpl.routesWithArg,
+            arguments = listOf(
+                navArgument(DestinasiDetailSpl.ID) {
+                    type = NavType.StringType
+                }
+            )
+        ){
+            val id = it.arguments?.getString(DestinasiDetailSpl.ID)
+            id?.let { id ->
+                DetailBrgView(
+                    onBack = {
+                        navController.popBackStack()
+                    },
+                    onEditClick = {
+                        navController.navigate("${DestinasiDetailSpl.route}/$it")
+                    },
+                    modifier = modifier,
+                    onDeleteClick = {
+                        navController.popBackStack()
+                    }
+                )
+            }
+        }
     }
 }

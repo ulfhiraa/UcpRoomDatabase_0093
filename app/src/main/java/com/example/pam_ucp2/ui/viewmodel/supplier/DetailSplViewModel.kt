@@ -20,21 +20,21 @@ class DetailSplViewModel(savedStateHandle: SavedStateHandle, private val reposit
 {
     private  val _id: String =  checkNotNull(savedStateHandle[DestinasiDetailSpl.ID])
 
-    val detailUiState: StateFlow<DetailUiState> = repositorySpl.getSpl(_id)
+    val detailUiState: StateFlow<DetailUiStateSpl> = repositorySpl.getSpl(_id)
         .filterNotNull()
         .map {
-            DetailUiState(
+            DetailUiStateSpl(
                 detailUiEvent = it.toDetailUiEvent(),
                 isLoading = false,
             )
         }
         .onStart {
-            emit(DetailUiState(isLoading = true))
+            emit(DetailUiStateSpl(isLoading = true))
             delay(600)
         }
         .catch {
             emit(
-                DetailUiState(
+                DetailUiStateSpl(
                     isLoading = false,
                     isError = true,
                     errorMessage = it.message ?: "Terjadi kesalahan"
@@ -44,14 +44,14 @@ class DetailSplViewModel(savedStateHandle: SavedStateHandle, private val reposit
         .stateIn(
             scope = viewModelScope,
             started = SharingStarted.WhileSubscribed(2000),
-            initialValue = DetailUiState(
+            initialValue = DetailUiStateSpl(
                 isLoading = true,
             )
         )
 }
 
 // Data Class untuk menampung data yang akan ditampilkan di UI
-data class DetailUiState(
+data class DetailUiStateSpl(
     val detailUiEvent: SupplierEvent = SupplierEvent(),
     val isLoading: Boolean = false,
     val isError: Boolean = false,

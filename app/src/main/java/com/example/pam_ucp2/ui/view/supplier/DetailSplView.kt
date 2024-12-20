@@ -1,6 +1,5 @@
 package com.example.pam_ucp2.ui.view.supplier
 
-import DetailUiState
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -27,6 +26,7 @@ import com.example.pam_ucp2.data.entity.Supplier
 import com.example.pam_ucp2.ui.customwidget.TopAppBar
 import com.example.pam_ucp2.ui.viewmodel.PenyediaViewModel
 import com.example.pam_ucp2.ui.viewmodel.supplier.DetailSplViewModel
+import com.example.pam_ucp2.ui.viewmodel.supplier.DetailUiStateSpl
 import com.example.pam_ucp2.ui.viewmodel.supplier.toSupplierEntity
 
 @Composable //untuk menampilkan detail supplier
@@ -45,11 +45,11 @@ fun DetailSplView(
             )
         }
     ) { innerPadding ->
-        val detailUiState by viewModel.detailUiState.collectAsState()
+        val detailUiStateSpl by viewModel.detailUiState.collectAsState()
 
         BodyDetailSpl(
             modifier = Modifier.padding(innerPadding),
-            detailUiState = detailUiState
+            detailUiStateSpl = detailUiStateSpl
         )
     }
 }
@@ -57,10 +57,10 @@ fun DetailSplView(
 @Composable // Untuk tampilan detail supplier dengan kondisi loading, data ditemukan, dan data kosong
 fun BodyDetailSpl(
     modifier: Modifier = Modifier,
-    detailUiState: DetailUiState = DetailUiState(),
+    detailUiStateSpl: DetailUiStateSpl = DetailUiStateSpl()
 ) {
     when {
-        detailUiState.isLoading -> {
+        detailUiStateSpl.isLoading -> {
             Box(
                 modifier = modifier.fillMaxSize(),
                 contentAlignment = Alignment.Center
@@ -69,8 +69,8 @@ fun BodyDetailSpl(
             }
         }
 
-        detailUiState.isUiEventNotEmpty -> {
-            val supplier = detailUiState.detailUiEvent.toSupplierEntity()
+        detailUiStateSpl.isUiEventNotEmpty -> {
+            val supplier = detailUiStateSpl.detailUiEvent.toSupplierEntity()
             Column(
                 modifier = modifier
                     .fillMaxWidth()
@@ -84,7 +84,7 @@ fun BodyDetailSpl(
             }
         }
 
-        detailUiState.isUiEventEmpty -> {
+        detailUiStateSpl.isUiEventEmpty -> {
             Box(
                 modifier = modifier.fillMaxWidth(),
                 contentAlignment = Alignment.Center
