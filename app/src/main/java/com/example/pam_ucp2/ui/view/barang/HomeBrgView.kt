@@ -158,7 +158,7 @@ fun ListBarang( // menampilkan daftar barang
             itemContent = { brg ->
                 CardBrg(
                     brg = brg,
-                    onClick = { onClick(brg.id) }
+                    onClick = { onClick(brg.id.toString()) }
                 )
             }
         )
