@@ -45,7 +45,7 @@ fun DetailBrgView(
     modifier: Modifier = Modifier,
     viewModel: DetailBrgViewModel = viewModel(factory = PenyediaViewModel.Factory),
     onBack: () -> Unit = { },
-    onEditClick: (String) -> Unit = { },
+    onEditClick: (Int) -> Unit = { },
     onDeleteClick: () -> Unit = { }
 ){
     Scaffold (
