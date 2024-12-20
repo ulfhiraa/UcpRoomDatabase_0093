@@ -57,13 +57,8 @@ fun DetailBrgView(
             )
         },
         floatingActionButton = {
-            val barangId = viewModel.detailUiState.value.detailUiEvent?.id ?: 0
             FloatingActionButton(
-                onClick = {
-                    if (barangId != 0) {
-                        onEditClick(barangId)
-                    }
-                },
+                onClick = { onEditClick(viewModel.detailUiState.value.detailUiEvent.id) },
                 shape = MaterialTheme.shapes.medium,
                 modifier = Modifier.padding(16.dp)
             ) {
@@ -105,14 +100,13 @@ fun BodyDetailBrg(
         }
 
         detailUiState.isUiEventNotEmpty -> {
-            val barang = detailUiState.detailUiEvent.toBarangEntity()
             Column(
                 modifier = modifier
                     .fillMaxWidth()
                     .padding(16.dp)
             ) {
                 ItemDetailBrg(
-                    barang = barang,
+                    barang = detailUiState.detailUiEvent.toBarangEntity(),
                     modifier = Modifier
                 )
                 Spacer(modifier = Modifier.padding(8.dp))
@@ -214,14 +208,14 @@ fun ComponentDetailBrg( // menampilkan detail informasi brg
 }
 
 @Composable
-private fun DeleteConfirmationDialog( // Konfirmasi penghapusan data
+private fun DeleteConfirmationDialog( // konfirmasi penghapusan data
     onDeleteConfirm: () -> Unit,
     onDeleteCancel: () -> Unit,
     modifier: Modifier = Modifier
-){
-    AlertDialog(onDismissRequest = { },
-        title = { Text("Delete Data") },
-        text = { Text("Apakah Anda yakin ingin menghapus data? ") },
+) {
+    AlertDialog(onDismissRequest = {/* Do Nothing */},
+        title = { Text("Delete Data")},
+        text = { Text("Apakah anda yakin ingin menghapus data?")},
         modifier = modifier,
         dismissButton = {
             TextButton(onClick = onDeleteCancel) {
@@ -232,6 +226,5 @@ private fun DeleteConfirmationDialog( // Konfirmasi penghapusan data
             TextButton(onClick = onDeleteConfirm) {
                 Text(text = "Yes")
             }
-        }
-    )
+        })
 }
