@@ -8,7 +8,9 @@ data class Barang( //tabel barang
     @PrimaryKey(autoGenerate = true) val id: Int = 0, // Auto-increment    val id: Int,
     val nama: String,
     val deskripsi: String,
+    //val harga: String,
     val harga: Double,
-    val stok: Int,
+   // val stok: Int,
+    val stok: String,
     val namaSupplier: String
 )
