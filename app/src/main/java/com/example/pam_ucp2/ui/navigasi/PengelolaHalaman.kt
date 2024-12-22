@@ -83,9 +83,6 @@ fun PengelolaHalaman( // untuk mengelola navigasi antar halaman home, barang dan
             route = DestinasiHomeSpl.route
         ) {
             HomeSplView(
-                onDetailClick = { id ->
-                    navController.navigate("${DestinasiDetailSpl.route}/$id")
-                },
                 onAddSpl = {
                     navController.navigate(DestinasiInsertSpl.route)
                 },
