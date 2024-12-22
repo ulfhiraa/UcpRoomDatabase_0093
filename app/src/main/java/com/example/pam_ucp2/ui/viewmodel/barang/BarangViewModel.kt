@@ -97,7 +97,6 @@ data class BarangEvent(
     val id: Int = 0,  // Default 0 karena ID auto increment
     val nama: String = "",
     val deskripsi: String = "",
-    //val harga: String = "",
     val harga: Double = 0.0,
     val stok: Int = 0,
     val namaSupplier: String = ""

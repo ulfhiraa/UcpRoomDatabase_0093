@@ -22,6 +22,7 @@ import androidx.compose.material3.Card
 import androidx.compose.material3.ElevatedCard
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.OutlinedCard
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -136,7 +137,7 @@ fun PilihanHomeView(
                 horizontalArrangement = Arrangement.SpaceEvenly
             ) {
                 // HOME BARANG CARD
-                Card(
+                OutlinedCard(
                     onClick = onBarangClick,
                     modifier = Modifier
                         .weight(1f)

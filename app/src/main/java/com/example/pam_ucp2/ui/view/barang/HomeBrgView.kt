@@ -17,7 +17,11 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
+import androidx.compose.material.icons.filled.Face
+import androidx.compose.material.icons.filled.Info
 import androidx.compose.material.icons.filled.List
+import androidx.compose.material.icons.filled.Menu
+import androidx.compose.material.icons.filled.Person
 import androidx.compose.material.icons.filled.ShoppingCart
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
@@ -115,7 +119,7 @@ fun SectionHeaderHomeBrg(
             ){
                 Spacer(Modifier.padding(20.dp))
                 TopAppBar(
-                    judul = "   H o m e\n\n  B a r a n g",
+                    judul = "  H o m e\n\n B a r a n g",
                     showBackButton = true,
                     onBack = onBack,
                     modifier = Modifier
@@ -132,13 +136,10 @@ fun SectionHeaderHomeBrg(
                     painter = painterResource(id = R.drawable.bear),
                     contentDescription = " ",
                     Modifier
-                        .size(100.dp)
+                        .size(80.dp)
                         .clip(RoundedCornerShape(500.dp))
                         .shadow(50.dp, RoundedCornerShape(370.dp))
                 )
-
-                Spacer(Modifier.padding(20.dp))
-
             }
         }
     }
@@ -228,102 +229,128 @@ fun ListBarang( // menampilkan daftar barang
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun CardBrg( // untuk menampilkan informasi barang (nama, deskripsi, harga, stok, namaSupplier) dengan mengklik card
+fun CardBrg( // Untuk menampilkan informasi barang
     brg: Barang,
     modifier: Modifier = Modifier,
     onClick: () -> Unit = { }
 ) {
     // Tentukan warna berdasarkan stok barang
     val cardColor = when {
-        brg.stok == 0 -> Color.Gray // Warna abu-abu untuk stok 0
-        brg.stok in 1..10 -> Color.Red // Merah untuk stok 1-10
-        else -> Color.Green // Hijau jika stok lebih dari 10
+        brg.stok == 0 -> Color.LightGray // Warna abu-abu untuk stok habis
+        brg.stok in 1..10 -> Color(0xFFFFCDD2) // Warna merah muda untuk stok 1-10
+        else -> Color(0xFFC8E6C9) // Warna hijau muda untuk stok lebih dari 10
     }
 
     Card(
         onClick = onClick,
         modifier = modifier
             .fillMaxWidth()
-            .padding(8.dp),
-        colors = CardDefaults.cardColors(
-            containerColor = cardColor // Set warna berdasarkan kondisi stok
-        )
+            .padding(8.dp)
+            .clip(RoundedCornerShape(16.dp)), // Sudut membulat
+        colors = CardDefaults.cardColors(containerColor = cardColor)
     ) {
-        Column(
-            modifier = Modifier.fillMaxWidth(),
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(16.dp),
+            horizontalArrangement = Arrangement.SpaceBetween
         ) {
-            // Row pertama untuk menampilkan id barang dan nama barang
-            Row(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(8.dp), // Padding untuk jarak antar elemen
-                verticalAlignment = Alignment.CenterVertically
+            // Kolom kiri untuk ID, Stok, nama Supplier
+            Column(
+                verticalArrangement = Arrangement.spacedBy(8.dp)
             ) {
-                // Icon Keranjang yang lebih besar
-                Icon(
-                    imageVector = Icons.Filled.ShoppingCart,
-                    contentDescription = "Keranjang",
-                    modifier = Modifier.size(50.dp) // Ukuran ikon lebih besar
-                )
-                Spacer(modifier = Modifier.width(8.dp)) // Jarak antara ikon dan teks
-                Column(
-                    verticalArrangement = Arrangement.Center
+                // ID Barang
+                Row(verticalAlignment = Alignment.CenterVertically) {
+                    Icon(
+                        imageVector = Icons.Filled.Info, // Ikon untuk ID
+                        contentDescription = "ID Barang",
+                        tint = MaterialTheme.colorScheme.secondary,
+                        modifier = Modifier.size(30.dp)
+                    )
+                    Spacer(modifier = Modifier.width(8.dp))
+                    Text(
+                        text = "${brg.id}",
+                        fontWeight = FontWeight.Bold,
+                        fontSize = 20.sp,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant
+                    )
+                }
+
+                // Stok Barang
+                Row(verticalAlignment = Alignment.CenterVertically) {
+                    Icon(
+                        imageVector = Icons.Filled.Menu, // Ikon untuk stok
+                        contentDescription = "Stok Barang",
+                        tint = MaterialTheme.colorScheme.secondary,
+                        modifier = Modifier.size(30.dp)
+                    )
+                    Spacer(modifier = Modifier.width(8.dp))
+                    Text(
+                        text = "${brg.stok}",
+                        fontWeight = FontWeight.SemiBold,
+                        fontSize = 20.sp,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant
+                    )
+                }
+                // Nama Supplier
+                Row(verticalAlignment = Alignment.CenterVertically) {
+                    Icon(
+                        imageVector = Icons.Filled.Face, // Ikon untuk supplier
+                        contentDescription = "Nama Supplier",
+                        tint = MaterialTheme.colorScheme.primary,
+                        modifier = Modifier.size(25.dp) // Ikon besar
+                    )
+                    Spacer(modifier = Modifier.width(8.dp))
+                    Text(
+                        text = brg.namaSupplier,
+                        fontWeight = FontWeight.Medium,
+                        fontSize = 20.sp,
+                        color = MaterialTheme.colorScheme.onSurface
+                    )
+                }
+            }
+
+            // Kolom kanan untuk Nama Barang dan Nama Supplier
+            Column(
+                horizontalAlignment = Alignment.End,
+                verticalArrangement = Arrangement.spacedBy(8.dp)
+            ) {
+                // Nama Barang
+                Row(
+                    verticalAlignment = Alignment.CenterVertically
                 ) {
                     Text(
                         text = brg.nama,
-                        fontWeight = FontWeight.Bold,
-                        fontSize = 20.sp,
-                        modifier = Modifier.fillMaxWidth()
+                        fontWeight = FontWeight.ExtraBold,
+                        fontSize = 22.sp, // Ukuran besar untuk nama barang
+                        color = MaterialTheme.colorScheme.onSurface
                     )
                 }
-            }
+                Icon(
+                    imageVector = Icons.Filled.ShoppingCart,
+                    contentDescription = "Nama Barang",
+                    tint = MaterialTheme.colorScheme.primary,
+                    modifier = Modifier.size(65.dp) // Ikon besar
+                )
 
-            // Row kedua untuk menampilkan jumlah stok dan nama supplier
-            Row(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(8.dp),
-                horizontalArrangement = Arrangement.SpaceBetween,
-                verticalAlignment = Alignment.CenterVertically
-            ) {
-                // Stok barang
-                Column {
-                    Text(
-                        text = "Stok: ${brg.stok}",
-                        fontWeight = FontWeight.Bold,
-                        fontSize = 18.sp
-                    )
-                }
-
-                // Nama Supplier
-                Column(
-                    horizontalAlignment = Alignment.End
+                // Harga Barang di bawah
+                Row(
+                    verticalAlignment = Alignment.CenterVertically
                 ) {
                     Text(
-                        text = brg.namaSupplier, // Tampilkan nama supplier
+                        text = "Rp ${brg.harga}",
                         fontWeight = FontWeight.Bold,
-                        fontSize = 18.sp
+                        fontSize = 18.sp,
+                        color = MaterialTheme.colorScheme.secondary
                     )
                 }
-            }
-
-            // Row ketiga untuk menampilkan harga barang
-            Row(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(8.dp),
-                horizontalArrangement = Arrangement.End, // Menempatkan harga di kanan
-                verticalAlignment = Alignment.CenterVertically
-            ) {
-                // Harga barang
-                Text(
-                    text = "Harga: Rp ${brg.harga}",
-                    fontWeight = FontWeight.Bold,
-                    fontSize = 18.sp
-                )
             }
         }
     }
 }
+
+
+
+
 
 

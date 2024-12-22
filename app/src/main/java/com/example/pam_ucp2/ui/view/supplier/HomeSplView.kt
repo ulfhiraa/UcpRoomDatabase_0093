@@ -77,8 +77,6 @@ fun HomeSplView( // Fungsi utama untuk menampilkan halaman daftar supplier denga
         // Bagian Daftar Supplier
         Box(
             modifier = Modifier
-            //.fillMaxSize()
-            //.padding(top = 8.dp) // Memberikan jarak antara header dan daftar supplier
         ) {
             Scaffold(
                 floatingActionButton = {
@@ -115,15 +113,6 @@ fun SectionHeaderHomeSpl(
         .background(color = Color.LightGray, RoundedCornerShape(bottomEnd = 50.dp))
     ){
         Box(){
-            Column(modifier = Modifier.fillMaxWidth(), horizontalAlignment = Alignment.Start, verticalArrangement = Arrangement.SpaceBetween)
-            {
-                Icon(
-                    Icons.Filled.List,
-                    contentDescription = " ",
-                    Modifier.padding(end = 1.dp),
-                    tint = Color.White
-                )
-            }
             Column (
                 modifier = Modifier.fillMaxWidth(),
                 horizontalAlignment = Alignment.CenterHorizontally,
@@ -136,12 +125,18 @@ fun SectionHeaderHomeSpl(
                     modifier = Modifier
                 )
             }
-            Column(modifier = Modifier.fillMaxWidth(), horizontalAlignment = Alignment.End, verticalArrangement = Arrangement.Center) {
+            Column(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalAlignment = Alignment.End,
+                verticalArrangement = Arrangement.Center) {
+
+                Spacer(Modifier.padding(20.dp))
+
                 Image(
                     painter = painterResource(id = R.drawable.bear),
                     contentDescription = " ",
                     Modifier
-                        .size(100.dp)
+                        .size(80.dp)
                         .clip(RoundedCornerShape(500.dp))
                         .shadow(50.dp, RoundedCornerShape(370.dp))
                 )

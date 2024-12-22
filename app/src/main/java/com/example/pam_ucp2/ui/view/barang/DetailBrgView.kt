@@ -98,7 +98,7 @@ fun SectionHeaderDetailBrg(
                     painter = painterResource(id = R.drawable.bear),
                     contentDescription = " ",
                     Modifier
-                        .size(100.dp)
+                        .size(80.dp)
                         .clip(RoundedCornerShape(500.dp))
                         .shadow(50.dp, RoundedCornerShape(370.dp))
                 )

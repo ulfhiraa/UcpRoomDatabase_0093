@@ -32,5 +32,6 @@ interface BarangDao {
     suspend fun updateBarang(
         barang: Barang
     )
+
 }
 
