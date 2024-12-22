@@ -8,6 +8,11 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Edit
+import androidx.compose.material.icons.filled.Face
+import androidx.compose.material.icons.filled.Info
+import androidx.compose.material.icons.filled.Menu
+import androidx.compose.material.icons.filled.Person
+import androidx.compose.material.icons.filled.ShoppingCart
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.runtime.saveable.rememberSaveable
@@ -16,6 +21,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
@@ -123,7 +129,7 @@ fun BodyDetailBrg(
                 modifier = modifier.fillMaxSize(),
                 contentAlignment = Alignment.Center
             ) {
-                CircularProgressIndicator() // Tampilkan loading
+                CircularProgressIndicator(color = Color.Magenta) // Loading lebih menarik
             }
         }
 
@@ -132,17 +138,29 @@ fun BodyDetailBrg(
                 modifier = modifier
                     .fillMaxSize()
                     .padding(16.dp)
+                    .background(
+                        color = Color(0xFFFFF3E0), // Background pastel
+                        shape = RoundedCornerShape(16.dp)
+                    )
+                    .padding(16.dp)
             ) {
                 ItemDetailBrg(
                     barang = detailUiState.detailUiEvent.toBarangEntity(),
                     modifier = Modifier
+                        .clip(RoundedCornerShape(16.dp))
+                        .background(Color.White)
+                        .padding(16.dp)
                 )
                 Spacer(modifier = Modifier.height(16.dp))
                 Button(
                     onClick = {
                         deleteConfirmationRequired = true
                     },
-                    modifier = Modifier.fillMaxWidth()
+                    modifier = Modifier.fillMaxWidth(),
+                    colors = ButtonDefaults.buttonColors(
+                        containerColor = Color(0xFFFFCDD2), // Tombol merah pastel
+                        contentColor = Color.White
+                    )
                 ) {
                     Text(text = "Delete")
                 }
@@ -167,41 +185,67 @@ fun BodyDetailBrg(
             ) {
                 Text(
                     text = "Data tidak ditemukan",
-                    modifier = Modifier.padding(16.dp)
+                    modifier = Modifier.padding(16.dp),
+                    fontSize = 18.sp,
+                    color = Color.Gray
                 )
             }
         }
     }
 }
-
 @Composable
 fun ItemDetailBrg(
     modifier: Modifier = Modifier,
     barang: Barang
 ) {
     Card(
-        modifier = Modifier.fillMaxWidth(),
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(8.dp), // Tambahkan padding luar
         colors = CardDefaults.cardColors(
-            containerColor = MaterialTheme.colorScheme.primaryContainer,
-            contentColor = MaterialTheme.colorScheme.onPrimaryContainer
-        )
+            containerColor = Color(0xFFE3F2FD), // Warna biru pastel
+            contentColor = Color(0xFF1E88E5)
+        ),
+        elevation = CardDefaults.cardElevation(6.dp)
     ) {
         Column(
-            modifier = Modifier.padding(16.dp)
+            modifier = Modifier
+                .padding(16.dp)
+                .fillMaxWidth()
         ) {
-            ComponentDetailBrg(judul = "Nama", isinya = barang.nama)
-            Spacer(modifier = Modifier.height(4.dp))
+            ComponentDetailBrg(
+                judul = "Nama",
+                isinya = barang.nama,
+                icon = Icons.Default.Person // Ikon default untuk nama
+            )
+            Spacer(modifier = Modifier.height(8.dp))
 
-            ComponentDetailBrg(judul = "Deskripsi", isinya = barang.deskripsi)
-            Spacer(modifier = Modifier.height(4.dp))
+            ComponentDetailBrg(
+                judul = "Deskripsi",
+                isinya = barang.deskripsi,
+                icon = Icons.Default.Info // Ikon default untuk deskripsi
+            )
+            Spacer(modifier = Modifier.height(8.dp))
 
-            ComponentDetailBrg(judul = "Harga", isinya = barang.harga)
-            Spacer(modifier = Modifier.height(4.dp))
+            ComponentDetailBrg(
+                judul = "Harga",
+                isinya = barang.harga,
+                icon = Icons.Default.Menu // Ikon default untuk harga
+            )
+            Spacer(modifier = Modifier.height(8.dp))
 
-            ComponentDetailBrg(judul = "Stok", isinya = barang.stok)
-            Spacer(modifier = Modifier.height(4.dp))
+            ComponentDetailBrg(
+                judul = "Stok",
+                isinya = barang.stok,
+                icon = Icons.Default.ShoppingCart // Ikon default untuk stok
+            )
+            Spacer(modifier = Modifier.height(8.dp))
 
-            ComponentDetailBrg(judul = "Nama Supplier", isinya = barang.namaSupplier)
+            ComponentDetailBrg(
+                judul = "Nama Supplier",
+                isinya = barang.namaSupplier,
+                icon = Icons.Default.Face // Ikon default untuk supplier
+            )
         }
     }
 }
@@ -210,22 +254,36 @@ fun ItemDetailBrg(
 fun ComponentDetailBrg(
     modifier: Modifier = Modifier,
     judul: String,
-    isinya: Any
+    isinya: Any,
+    icon: ImageVector
 ) {
-    Column(
-        modifier = modifier.fillMaxWidth(),
-        horizontalAlignment = Alignment.Start
+    Row(
+        modifier = modifier
+            .fillMaxWidth()
+            .padding(4.dp), // Sedikit padding untuk estetika
+        verticalAlignment = Alignment.CenterVertically
     ) {
-        Text(
-            text = "$judul :",
-            fontSize = 16.sp,
-            fontWeight = FontWeight.Bold,
-            color = Color.Gray
+        Icon(
+            imageVector = icon,
+            contentDescription = "$judul Icon",
+            modifier = Modifier
+                .size(32.dp) // Ukuran ikon
+                .padding(end = 8.dp),
+            tint = Color(0xFF1E88E5) // Warna ikon biru pastel
         )
-        Text(
-            text = isinya.toString(),
-            fontSize = 16.sp
-        )
+        Column {
+            Text(
+                text = "$judul:",
+                fontSize = 14.sp,
+                fontWeight = FontWeight.Bold,
+                color = Color.Gray
+            )
+            Text(
+                text = isinya.toString(),
+                fontSize = 16.sp,
+                color = Color.Black
+            )
+        }
     }
 }
 
@@ -237,17 +295,17 @@ private fun DeleteConfirmationDialog(
 ) {
     AlertDialog(
         onDismissRequest = { /* Do Nothing */ },
-        title = { Text("Hapus Data") },
+        title = { Text("Hapus Data", fontSize = 20.sp, fontWeight = FontWeight.Bold) },
         text = { Text("Apakah Anda yakin ingin menghapus data ini?") },
         modifier = modifier,
         dismissButton = {
             TextButton(onClick = onDeleteCancel) {
-                Text(text = "Batal")
+                Text(text = "Batal", color = Color.Gray)
             }
         },
         confirmButton = {
             TextButton(onClick = onDeleteConfirm) {
-                Text(text = "Ya")
+                Text(text = "Ya", color = Color.Red)
             }
         }
     )

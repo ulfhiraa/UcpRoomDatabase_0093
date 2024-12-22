@@ -31,6 +31,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
@@ -121,13 +122,13 @@ fun PilihanHomeView(
                 .padding(16.dp),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            Text(
-                text = "Pilih Halaman",
-                style = MaterialTheme.typography.headlineMedium,
-                modifier = Modifier.padding(32.dp)
-            )
+//            Text(
+//                text = "Pilih Halaman",
+//                style = MaterialTheme.typography.headlineMedium,
+//                modifier = Modifier.padding(32.dp)
+//            )
 
-            Spacer(modifier = Modifier.padding(bottom = 20.dp))
+            Spacer(modifier = Modifier.padding(bottom = 60.dp))
 
             // Baris Pertama: Home Barang & Add Barang
             Row(
@@ -149,17 +150,15 @@ fun PilihanHomeView(
                             .padding(16.dp),
                         horizontalAlignment = Alignment.CenterHorizontally
                     ) {
+                        Spacer(modifier = Modifier.height(20.dp))
                         // Gambar Bear
                         Image(
-                            painter = painterResource(id = R.drawable.bear),
+                            painter = painterResource(id = R.drawable.brg),
                             contentDescription = "Home Barang Icon",
                             modifier = Modifier
                                 .size(60.dp)
-                                .clip(RoundedCornerShape(30.dp)) // Sesuaikan bentuk gambar
-                                .shadow(10.dp, RoundedCornerShape(30.dp)) // Tambahkan bayangan
                         )
-
-                        Spacer(modifier = Modifier.height(20.dp))
+                        Spacer(modifier = Modifier.height(10.dp))
 
                         // Teks "Home Barang"
                         Text(
@@ -167,13 +166,13 @@ fun PilihanHomeView(
                             style = MaterialTheme.typography.bodyLarge.copy(fontWeight = FontWeight.Bold),
                             textAlign = TextAlign.Center
                         )
+                        Spacer(modifier = Modifier.height(20.dp))
                     }
-
                 }
 
                 // ADD BARANG CARD
-                Card(
-                    onClick = onAddBrgClick,
+                OutlinedCard(
+                    onClick = onBarangClick,
                     modifier = Modifier
                         .weight(1f)
                         .padding(horizontal = 8.dp)
@@ -184,17 +183,15 @@ fun PilihanHomeView(
                             .padding(16.dp),
                         horizontalAlignment = Alignment.CenterHorizontally
                     ) {
+                        Spacer(modifier = Modifier.height(20.dp))
                         // Gambar Bear
                         Image(
-                            painter = painterResource(id = R.drawable.bear),
+                            painter = painterResource(id = R.drawable.addbrg),
                             contentDescription = "Add Barang Icon",
                             modifier = Modifier
                                 .size(60.dp)
-                                .clip(RoundedCornerShape(30.dp)) // Sesuaikan bentuk gambar
-                                .shadow(10.dp, RoundedCornerShape(30.dp)) // Tambahkan bayangan
                         )
-
-                        Spacer(modifier = Modifier.height(20.dp))
+                        Spacer(modifier = Modifier.height(10.dp))
 
                         // Teks "Add Barang"
                         Text(
@@ -202,10 +199,11 @@ fun PilihanHomeView(
                             style = MaterialTheme.typography.bodyLarge.copy(fontWeight = FontWeight.Bold),
                             textAlign = TextAlign.Center
                         )
+                        Spacer(modifier = Modifier.height(20.dp))
                     }
                 }
             }
-            Spacer(modifier = Modifier.padding(bottom = 30.dp))
+            Spacer(modifier = Modifier.padding(bottom = 20.dp))
 
             // Baris Kedua: Home Supplier & Add Supplier
             Row(
@@ -215,7 +213,7 @@ fun PilihanHomeView(
                 horizontalArrangement = Arrangement.SpaceEvenly
             ) {
                 // HOME SUPPLIER CARD
-                Card(
+                OutlinedCard(
                     onClick = onSupplierClick,
                     modifier = Modifier
                         .weight(1f)
@@ -227,17 +225,15 @@ fun PilihanHomeView(
                             .padding(16.dp),
                         horizontalAlignment = Alignment.CenterHorizontally
                     ) {
+                        Spacer(modifier = Modifier.height(20.dp))
                         // Gambar Bear
                         Image(
-                            painter = painterResource(id = R.drawable.bear),
+                            painter = painterResource(id = R.drawable.spl),
                             contentDescription = "Home Supplier Icon",
                             modifier = Modifier
                                 .size(60.dp)
-                                .clip(RoundedCornerShape(30.dp)) // Sesuaikan bentuk gambar
-                                .shadow(10.dp, RoundedCornerShape(30.dp)) // Tambahkan bayangan
                         )
-
-                        Spacer(modifier = Modifier.height(20.dp))
+                        Spacer(modifier = Modifier.height(10.dp))
 
                         // Teks "Home Supplier"
                         Text(
@@ -245,40 +241,41 @@ fun PilihanHomeView(
                             style = MaterialTheme.typography.bodyLarge.copy(fontWeight = FontWeight.Bold),
                             textAlign = TextAlign.Center
                         )
+                        Spacer(modifier = Modifier.height(20.dp))
                     }
                 }
 
                 // ADD SUPPLIER CARD
-                Card(
-                    onClick = onAddSplClick,
+                OutlinedCard(
+                    onClick = onSupplierClick,
                     modifier = Modifier
                         .weight(1f)
                         .padding(horizontal = 8.dp)
-                ) {                    Column(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(16.dp),
-                    horizontalAlignment = Alignment.CenterHorizontally
                 ) {
-                    // Gambar Bear
-                    Image(
-                        painter = painterResource(id = R.drawable.bear),
-                        contentDescription = "Add Supplier Icon",
+                    Column(
                         modifier = Modifier
-                            .size(60.dp)
-                            .clip(RoundedCornerShape(30.dp)) // Sesuaikan bentuk gambar
-                            .shadow(10.dp, RoundedCornerShape(30.dp)) // Tambahkan bayangan
-                    )
+                            .fillMaxWidth()
+                            .padding(16.dp),
+                        horizontalAlignment = Alignment.CenterHorizontally
+                    ) {
+                        Spacer(modifier = Modifier.height(20.dp))
+                        // Gambar Bear
+                        Image(
+                            painter = painterResource(id = R.drawable.addspl),
+                            contentDescription = "Add Supplier Icon",
+                            modifier = Modifier
+                                .size(60.dp)
+                        )
+                        Spacer(modifier = Modifier.height(10.dp))
 
-                    Spacer(modifier = Modifier.height(20.dp))
-
-                    // Teks "Add Supplier"
-                    Text(
-                        text = "Add Supplier",
-                        style = MaterialTheme.typography.bodyLarge.copy(fontWeight = FontWeight.Bold),
-                        textAlign = TextAlign.Center
-                    )
-                }
+                        // Teks "Add Supplier"
+                        Text(
+                            text = "Add Supplier",
+                            style = MaterialTheme.typography.bodyLarge.copy(fontWeight = FontWeight.Bold),
+                            textAlign = TextAlign.Center
+                        )
+                        Spacer(modifier = Modifier.height(20.dp))
+                    }
                 }
             }
         }
