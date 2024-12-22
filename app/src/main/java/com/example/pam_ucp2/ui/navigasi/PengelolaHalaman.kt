@@ -20,10 +20,8 @@ import com.example.pam_ucp2.ui.view.barang.SectionHeaderInsertBrg
 import com.example.pam_ucp2.ui.view.barang.SectionHeaderUpdateBrg
 import com.example.pam_ucp2.ui.view.barang.UpdateBrgView
 import com.example.pam_ucp2.ui.view.supplier.DestinasiInsertSpl
-import com.example.pam_ucp2.ui.view.supplier.DetailSplView
 import com.example.pam_ucp2.ui.view.supplier.HomeSplView
 import com.example.pam_ucp2.ui.view.supplier.InsertSplView
-import com.example.pam_ucp2.ui.view.supplier.SectionHeaderDetailSpl
 import com.example.pam_ucp2.ui.view.supplier.SectionHeaderHomeSpl
 import com.example.pam_ucp2.ui.view.supplier.SectionHeaderInsertSpl
 
@@ -200,31 +198,6 @@ fun PengelolaHalaman( // untuk mengelola navigasi antar halaman home, barang dan
                 },
                 modifier = modifier,
             )
-        }
-
-        // Detail Supplier
-        composable(
-            DestinasiDetailSpl.routesWithArg,
-            arguments = listOf(
-                navArgument(DestinasiDetailSpl.ID) {
-                    type = NavType.StringType
-                }
-            )
-        ){
-            val id = it.arguments?.getString(DestinasiDetailSpl.ID)
-            id?.let { id ->
-                DetailSplView(
-                    onBack = {
-                        navController.popBackStack()
-                    },
-                    modifier = modifier
-                )
-                SectionHeaderDetailSpl(
-                    onBack = {
-                        navController.popBackStack()
-                    }
-                )
-            }
         }
     }
 }
