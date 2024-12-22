@@ -2,7 +2,6 @@ package com.example.pam_ucp2.ui.view.barang
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -14,11 +13,8 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.ArrowDropDown
 import androidx.compose.material.icons.filled.List
 import androidx.compose.material3.Button
-import androidx.compose.material3.DropdownMenu
-import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.Icon
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Scaffold
@@ -31,16 +27,21 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.pam_ucp2.R
+import com.example.pam_ucp2.data.SupplierList
+import com.example.pam_ucp2.ui.customwidget.DropdownSupplier
 import com.example.pam_ucp2.ui.customwidget.TopAppBar
 import com.example.pam_ucp2.ui.navigasi.AlamatNavigasi
 import com.example.pam_ucp2.ui.viewmodel.PenyediaViewModel
@@ -107,6 +108,7 @@ fun InsertBrgView( // untuk menampilkan form input barang dengan snackbar
     modifier: Modifier = Modifier,
     viewModel: BarangViewModel = viewModel(factory = PenyediaViewModel.Factory) // Inisialisasi viewModel
 ){
+
     val uiState = viewModel.uiState // ambil UI state dari viewModel
     val snackbarHostState = remember { SnackbarHostState() } // Snackbar state
     val coroutineScope = rememberCoroutineScope()
@@ -184,11 +186,9 @@ fun FormBarang(
     barangEvent: BarangEvent = BarangEvent(),
     onValueChange: (BarangEvent) -> Unit = {},
     errorState: FormErrorState = FormErrorState(),
- //   supplierList: List<String> = emptyList(),
     modifier: Modifier = Modifier
 ) {
-//    var expanded by remember { mutableStateOf(false) }
-//    var selectedNamaSupplier by remember { mutableStateOf(barangEvent.namaSupplier ?: "") }
+    var chosenDropdown by remember { mutableStateOf("") }
 
     Column(
         modifier = modifier.fillMaxWidth()
@@ -202,7 +202,7 @@ fun FormBarang(
             },
             label = { Text("Nama Barang") },
             isError = errorState.nama != null,
-            placeholder = { Text("Masukkan nama") },
+            placeholder = { Text("Masukkan nama barang") },
         )
         Text( // validasi error pada text field
             text = errorState.nama ?: "",
@@ -270,65 +270,22 @@ fun FormBarang(
         )
 
         // TEXTFIELD NAMA SUPPLIER
-        OutlinedTextField(
-            modifier = Modifier.fillMaxWidth(),
-            value = barangEvent.namaSupplier,
-            onValueChange = {
-                onValueChange(barangEvent.copy(namaSupplier = it))
-            },
-            label = { Text("Nama Supplier") },
-            isError = errorState.namaSupplier != null,
-            placeholder = { Text("Masukkan nama supplier") },
-        )
-        Text( // validasi error pada text field
-            text = errorState.namaSupplier ?: "",
-            color = Color.Red
-        )
 
-//        //Input untuk Nama Supplier (Manual atau Dropdown)
-//        Box(modifier = Modifier.fillMaxWidth()) {
-//            OutlinedTextField(
-//                value = selectedNamaSupplier,
-//                onValueChange = {
-//                    selectedNamaSupplier = it
-//                    onValueChange(barangEvent.copy(namaSupplier = it))
-//                },
-//                modifier = Modifier.fillMaxWidth(),
-//                label = { Text(text = "Pilih Nama Supplier") },
-//                trailingIcon = {
-//                    Icon(
-//                        imageVector = Icons.Filled.ArrowDropDown,
-//                        contentDescription = null,
-//                        modifier = Modifier.clickable { expanded = !expanded }
-//                    )
-//                }
-//            )
-//
-//            // DropdownMenu
-//            DropdownMenu(
-//                expanded = expanded,
-//                onDismissRequest = { expanded = false },
-//                modifier = Modifier.fillMaxWidth()
-//            ) {
-//                supplierList.forEach { namaSpl ->
-//                    DropdownMenuItem(
-//                        text = { Text(text = namaSpl) },
-//                        onClick = {
-//                            selectedNamaSupplier = namaSpl
-//                            onValueChange(barangEvent.copy(namaSupplier = namaSpl))
-//                            expanded = false
-//                        }
-//                    )
-//                }
-//            }
-//        }
+        Text(
+            text = "Pilih Nama Supplier",
+            fontSize = 12.sp,
+            fontWeight = FontWeight.Light
+        )
+        Spacer(modifier = Modifier.padding(8.dp))
 
-//        // Menampilkan error jika ada
-//        if (!errorState.namaSupplier.isNullOrEmpty()) {
-//            Text(
-//                text = errorState.namaSupplier ?: "",
-//                color = Color.Red
-//            )
-//        }
+        DropdownSupplier(
+            selectedValue = chosenDropdown,
+            options = SupplierList.NamaSpl(),
+            label = "Nama Supplier",
+            onValueChangeEvent = { selected ->
+                chosenDropdown = selected
+                onValueChange(barangEvent.copy(namaSupplier = selected))
+            }
+        )
     }
 }
