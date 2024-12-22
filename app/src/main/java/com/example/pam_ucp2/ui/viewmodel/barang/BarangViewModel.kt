@@ -28,7 +28,7 @@ class BarangViewModel(private val repositoryBrg: RepositoryBrg) : ViewModel()
             nama = if (event.nama.isNotEmpty()) null else "Nama tidak boleh kosong",
             deskripsi = if (event.deskripsi.isNotEmpty()) null else "Deskripsi tidak boleh kosong",
             harga = if (event.harga > 0) null else "Harga tidak boleh kosong", // Pastikan harga > 0
-            stok = if (event.stok > 0) null else "Stok tidak boleh kosong", // Pastikan stok > 0
+           // stok = if (event.stok > 0) null else "Stok tidak boleh kosong", // Pastikan stok > 0
             namaSupplier = if (event.namaSupplier.isNotEmpty()) null else "Nama Supplier tidak boleh kosong"
         )
 
@@ -97,6 +97,7 @@ data class BarangEvent(
     val id: Int = 0,  // Default 0 karena ID auto increment
     val nama: String = "",
     val deskripsi: String = "",
+    //val harga: String = "",
     val harga: Double = 0.0,
     val stok: Int = 0,
     val namaSupplier: String = ""

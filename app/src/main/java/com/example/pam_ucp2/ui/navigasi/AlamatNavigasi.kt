@@ -18,15 +18,15 @@ object DestinasiHomeBrg : AlamatNavigasi {
 // detail barang
 object DestinasiDetailBrg : AlamatNavigasi {
     override val route = "DestinasiDetailBrg"
-    const val ID = "id"
-    val routesWithArg = "$route/{$ID}"
+    const val IDbrg = "idBrg"
+    val routesWithArg = "$route/{$IDbrg}"
 }
 
 // update barang
 object DestinasiUpdateBrg : AlamatNavigasi {
     override val route = "DestinasiUpdateBrg"
-    const val ID = "id"
-    val routesWithArg = "$route/{$ID}"
+    const val IDbrg = "idBrg"
+    val routesWithArg = "$route/{$IDbrg}"
 }
 
 // home supplier

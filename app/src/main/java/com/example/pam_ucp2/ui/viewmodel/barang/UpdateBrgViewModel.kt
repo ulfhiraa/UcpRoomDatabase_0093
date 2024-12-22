@@ -20,7 +20,7 @@ class UpdateBrgViewModel ( savedStateHandle: SavedStateHandle, private val repos
     var updateUIState by mutableStateOf(BrgUIState())
         private set
 
-    private val _id: String = checkNotNull(savedStateHandle[DestinasiUpdateBrg.ID])
+    private val _id: String = checkNotNull(savedStateHandle[DestinasiUpdateBrg.IDbrg])
 
     init {
         viewModelScope.launch {
@@ -42,8 +42,8 @@ class UpdateBrgViewModel ( savedStateHandle: SavedStateHandle, private val repos
         val errorState = FormErrorState(
             nama = if (event.nama.isNotEmpty()) null else "Nama tidak boleh kosong",
             deskripsi = if (event.deskripsi.isNotEmpty()) null else "Deskripsi tidak boleh kosong",
-            harga = if (event.harga > 0) null else "Harga tidak boleh kosong atau negatif", // Pastikan harga > 0
-            stok = if (event.stok > 0) null else "Stok tidak boleh kosong atau negatif", // Pastikan stok > 0
+            harga = if (event.harga > 0) null else "Harga tidak boleh kosong", // Pastikan harga > 0
+        //    stok = if (event.stok > 0) null else "Stok tidak boleh kosong", // Pastikan stok > 0
             namaSupplier = if (event.namaSupplier.isNotEmpty()) null else "Nama Supplier tidak boleh kosong"
         )
 

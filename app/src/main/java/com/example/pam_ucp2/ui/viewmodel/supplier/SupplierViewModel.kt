@@ -97,7 +97,7 @@ data class SupplierEvent(
 
 // Menyimpan input form ke dalam entity
 fun SupplierEvent.toSupplierEntity(): Supplier = Supplier(
-    id = 0, // default 0 karna auto increment
+    id = id, // default 0 karna auto increment
     nama = nama,
     kontak = kontak,
     alamat = alamat

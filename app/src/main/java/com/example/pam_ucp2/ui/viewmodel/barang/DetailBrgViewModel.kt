@@ -21,9 +21,10 @@ Menambahkan ViewModel DetailBrgViewModel untuk mengelola data detail barang,
 termasuk pengambilan data, penanganan error, dan penghapusan barang.
 * */
 
-class DetailBrgViewModel( savedStateHandle: SavedStateHandle, private val repositoryBrg: RepositoryBrg, ) : ViewModel()
+class DetailBrgViewModel( savedStateHandle: SavedStateHandle,
+                          private val repositoryBrg: RepositoryBrg ) : ViewModel()
 {
-    private  val _id: String =  checkNotNull(savedStateHandle[DestinasiDetailBrg.ID])
+    private  val _id: String =  checkNotNull(savedStateHandle[DestinasiDetailBrg.IDbrg])
 
     val detailUiState: StateFlow<DetailUiState> = repositoryBrg.getBrg(_id)
         .filterNotNull()

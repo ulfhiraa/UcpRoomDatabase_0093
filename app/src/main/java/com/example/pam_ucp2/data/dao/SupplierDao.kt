@@ -15,9 +15,11 @@ interface SupplierDao {
         supplier: Supplier
     )
 
-    @Query("SELECT * FROM supplier ORDER BY nama ASC")
+    //@Query("SELECT * FROM supplier ORDER BY nama ASC")
+    @Query("SELECT * FROM supplier ORDER BY id ASC")
     fun getAllSupplier() : Flow<List<Supplier>>
 
-    @Query("SELECT * FROM supplier WHERE id = :id")
+    @Query("SELECT * FROM supplier WHERE nama = :id")
     fun getSupplier (id: String) : Flow<Supplier>
+
 }
