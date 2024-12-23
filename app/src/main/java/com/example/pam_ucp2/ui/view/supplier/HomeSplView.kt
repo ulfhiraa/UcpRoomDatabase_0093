@@ -110,7 +110,8 @@ fun SectionHeaderHomeSpl(
 ) {
     Box(modifier = Modifier
         .fillMaxWidth()
-        .background(color = Color.LightGray, RoundedCornerShape(bottomEnd = 50.dp))
+        .background(color = Color(0xFFc4b5c0),
+            RoundedCornerShape(bottomEnd = 50.dp))
     ){
         Box(){
             Column (

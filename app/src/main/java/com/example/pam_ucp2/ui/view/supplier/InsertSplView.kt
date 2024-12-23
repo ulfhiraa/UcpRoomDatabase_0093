@@ -15,6 +15,7 @@ import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.List
 import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Icon
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Scaffold
@@ -57,7 +58,8 @@ fun SectionHeaderInsertSpl(
 ) {
     Box(modifier = Modifier
         .fillMaxWidth()
-        .background(color = Color.LightGray, RoundedCornerShape(bottomEnd = 50.dp))
+        .background(color = Color(0xFFc4b5c0),
+            RoundedCornerShape(bottomEnd = 50.dp))
     ){
         Box(){
             Column (
@@ -163,7 +165,11 @@ fun InsertBodySpl( // Menambahkan tampilan form untuk memasukkan data supplier d
         )
         Button(
             onClick = onClick,
-            modifier = Modifier.fillMaxWidth()
+            modifier = Modifier.fillMaxWidth(),
+            colors = ButtonDefaults.buttonColors(
+                containerColor = Color(0xFF61505c), // Tombol merah pastel
+                contentColor = Color.White
+            )
         ) {
             Text("Simpan")
         }
