@@ -107,7 +107,7 @@ fun PengelolaHalaman( // untuk mengelola navigasi antar halaman home, barang dan
                     navController.popBackStack()
                 },
                 onNavigate = {
-                    navController.popBackStack()
+//                    navController.popBackStack()
                 },
                 modifier = modifier,
             )
@@ -185,7 +185,7 @@ fun PengelolaHalaman( // untuk mengelola navigasi antar halaman home, barang dan
                     navController.popBackStack()
                 },
                 onNavigate = {
-                    navController.popBackStack()
+               //     navController.popBackStack()
                 },
                 modifier = modifier,
             )
