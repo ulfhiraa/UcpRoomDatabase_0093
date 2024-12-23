@@ -14,12 +14,8 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Add
-import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.List
-import androidx.compose.material.icons.filled.Person
-import androidx.compose.material3.Card
-import androidx.compose.material3.ElevatedCard
+import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedCard
@@ -31,7 +27,6 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
@@ -42,7 +37,7 @@ import com.example.pam_ucp2.R
 fun SectionHeader() {
     Box(modifier = Modifier
         .fillMaxWidth()
-        .background(color = Color.LightGray,
+        .background(color = Color(0xFFc4b5c0),
             RoundedCornerShape(bottomEnd = 50.dp)
         )
     ){
@@ -80,7 +75,10 @@ fun SectionHeader() {
                 )
                 Spacer(Modifier.padding(16.dp))
             }
-            Column(modifier = Modifier.fillMaxWidth(), horizontalAlignment = Alignment.End, verticalArrangement = Arrangement.Center) {
+            Column(modifier = Modifier.fillMaxWidth(),
+                horizontalAlignment = Alignment.End,
+                verticalArrangement = Arrangement.Center
+            ) {
                 Spacer(Modifier.padding(20.dp))
 
                 Image(
@@ -88,8 +86,8 @@ fun SectionHeader() {
                     contentDescription = " ",
                     Modifier
                         .size(100.dp)
-                        .clip(RoundedCornerShape(500.dp))
-                        .shadow(50.dp, RoundedCornerShape(370.dp))
+                        .clip(RoundedCornerShape(100.dp))
+                        .shadow(50.dp, RoundedCornerShape(100.dp))
                  )
             }
         }
@@ -172,10 +170,14 @@ fun PilihanHomeView(
 
                 // ADD BARANG CARD
                 OutlinedCard(
-                    onClick = onBarangClick,
+                    onClick = onAddBrgClick,
                     modifier = Modifier
                         .weight(1f)
                         .padding(horizontal = 8.dp)
+                    ,
+                    colors = CardDefaults.outlinedCardColors(
+                       // containerColor = Color(0xFFFFCDD2) // Pink pastel color
+                    )
                 ) {
                     Column(
                         modifier = Modifier
@@ -247,7 +249,7 @@ fun PilihanHomeView(
 
                 // ADD SUPPLIER CARD
                 OutlinedCard(
-                    onClick = onSupplierClick,
+                    onClick = onAddSplClick,
                     modifier = Modifier
                         .weight(1f)
                         .padding(horizontal = 8.dp)

@@ -27,8 +27,8 @@ class BarangViewModel(private val repositoryBrg: RepositoryBrg) : ViewModel()
         val errorState = FormErrorState(
             nama = if (event.nama.isNotEmpty()) null else "Nama tidak boleh kosong",
             deskripsi = if (event.deskripsi.isNotEmpty()) null else "Deskripsi tidak boleh kosong",
-            harga = if (event.harga > 0) null else "Harga tidak boleh kosong", // Pastikan harga > 0
-           // stok = if (event.stok > 0) null else "Stok tidak boleh kosong", // Pastikan stok > 0
+            harga = if (event.harga < 0) null else "Harga tidak boleh kosong",
+            stok = if (event.stok < 0) null else "Stok tidak boleh kosong",
             namaSupplier = if (event.namaSupplier.isNotEmpty()) null else "Nama Supplier tidak boleh kosong"
         )
 

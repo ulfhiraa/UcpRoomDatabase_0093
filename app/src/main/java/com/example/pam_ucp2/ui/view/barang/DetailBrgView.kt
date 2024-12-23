@@ -77,7 +77,7 @@ fun SectionHeaderDetailBrg(
 ) {
     Box(modifier = Modifier
         .fillMaxWidth()
-        .background(color = Color.LightGray,
+        .background(color = Color(0xFFc4b5c0),
             RoundedCornerShape(bottomEnd = 50.dp))
     ){
         Box(){
@@ -105,8 +105,8 @@ fun SectionHeaderDetailBrg(
                     contentDescription = " ",
                     Modifier
                         .size(80.dp)
-                        .clip(RoundedCornerShape(500.dp))
-                        .shadow(50.dp, RoundedCornerShape(370.dp))
+                        .clip(RoundedCornerShape(100.dp))
+                        .shadow(50.dp, RoundedCornerShape(100.dp))
                 )
 
                 Spacer(Modifier.padding(20.dp))
@@ -129,7 +129,7 @@ fun BodyDetailBrg(
                 modifier = modifier.fillMaxSize(),
                 contentAlignment = Alignment.Center
             ) {
-                CircularProgressIndicator(color = Color.Magenta) // Loading lebih menarik
+                CircularProgressIndicator(color = Color(0xFF7b6d85)) // Loading lebih menarik
             }
         }
 
@@ -139,7 +139,8 @@ fun BodyDetailBrg(
                     .fillMaxSize()
                     .padding(16.dp)
                     .background(
-                        color = Color(0xFFFFF3E0), // Background pastel
+                       // color = Color(0xFFFFF3E0), // Background pastel
+                        color = Color(0xffefe9f5), // Background pastel
                         shape = RoundedCornerShape(16.dp)
                     )
                     .padding(16.dp)
@@ -158,7 +159,7 @@ fun BodyDetailBrg(
                     },
                     modifier = Modifier.fillMaxWidth(),
                     colors = ButtonDefaults.buttonColors(
-                        containerColor = Color(0xFFFFCDD2), // Tombol merah pastel
+                        containerColor = Color(0xFF7b6d85), // Tombol warna taro
                         contentColor = Color.White
                     )
                 ) {
@@ -203,8 +204,8 @@ fun ItemDetailBrg(
             .fillMaxWidth()
             .padding(8.dp), // Tambahkan padding luar
         colors = CardDefaults.cardColors(
-            containerColor = Color(0xFFE3F2FD), // Warna biru pastel
-            contentColor = Color(0xFF1E88E5)
+            containerColor = Color(0xFFd1c8db), // Warna biru pastel
+            contentColor = Color(0xffb8aebf)  //(0xFFb9aebd)
         ),
         elevation = CardDefaults.cardElevation(6.dp)
     ) {
@@ -269,12 +270,15 @@ fun ComponentDetailBrg(
             modifier = Modifier
                 .size(32.dp) // Ukuran ikon
                 .padding(end = 8.dp),
-            tint = Color(0xFF1E88E5) // Warna ikon biru pastel
+
+           // tint = Color(0xFF1E88E5) // Warna ikon biru pastel
+            tint = Color(0xFFb9aebd) // Warna ikon biru pastel
+//            tint = Color(0xFFFFCDD2) // Warna ikon pink pastel
         )
         Column {
             Text(
                 text = "$judul:",
-                fontSize = 14.sp,
+                fontSize = 18.sp,
                 fontWeight = FontWeight.Bold,
                 color = Color.Gray
             )
@@ -300,7 +304,7 @@ private fun DeleteConfirmationDialog(
         modifier = modifier,
         dismissButton = {
             TextButton(onClick = onDeleteCancel) {
-                Text(text = "Batal", color = Color.Gray)
+                Text(text = "Batal", color = Color.Black)
             }
         },
         confirmButton = {

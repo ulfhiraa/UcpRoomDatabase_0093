@@ -12,10 +12,8 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.List
 import androidx.compose.material3.Button
-import androidx.compose.material3.Icon
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.SnackbarHost
@@ -61,7 +59,9 @@ fun SectionHeaderInsertBrg(
 ) {
     Box(modifier = Modifier
         .fillMaxWidth()
-        .background(color = Color.LightGray, RoundedCornerShape(bottomEnd = 50.dp))
+        .background(color = Color(0xFFc4b5c0),
+            RoundedCornerShape(bottomEnd = 50.dp)
+        )
     ){
         Box(){
             Column (
@@ -174,7 +174,11 @@ fun InsertBodyBrg( // Menambahkan tampilan form untuk memasukkan data barang dan
         )
         Button(
             onClick = onClick,
-            modifier = Modifier.fillMaxWidth()
+            modifier = Modifier.fillMaxWidth(),
+            colors = ButtonDefaults.buttonColors(
+                containerColor = Color(0xFF61505c), // Tombol merah pastel
+                contentColor = Color.White
+            )
         ) {
             Text("Simpan")
         }
@@ -271,8 +275,7 @@ fun FormBarang(
             color = Color.Red
         )
 
-        // TEXTFIELD NAMA SUPPLIER
-
+        // DROPDOWN NAMA SUPPLIER
         DropdownSupplier(
             selectedValue = chosenDropdown,
             options = SupplierList.NamaSpl(),
@@ -282,5 +285,11 @@ fun FormBarang(
                 onValueChange(barangEvent.copy(namaSupplier = selected))
             }
         )
+        Text(
+            text = errorState.namaSupplier ?: "",
+            color = Color.Red
+        )
+        Spacer(Modifier.padding(20.dp))
+
     }
 }

@@ -19,9 +19,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.Face
 import androidx.compose.material.icons.filled.Info
-import androidx.compose.material.icons.filled.List
 import androidx.compose.material.icons.filled.Menu
-import androidx.compose.material.icons.filled.Person
 import androidx.compose.material.icons.filled.ShoppingCart
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
@@ -109,7 +107,7 @@ fun SectionHeaderHomeBrg(
 ) {
     Box(modifier = Modifier
         .fillMaxWidth()
-        .background(color = Color.LightGray,
+        .background(color = Color(0xFFc4b5c0),
             RoundedCornerShape(bottomEnd = 50.dp))
     ){
         Box(){
@@ -137,8 +135,8 @@ fun SectionHeaderHomeBrg(
                     contentDescription = " ",
                     Modifier
                         .size(80.dp)
-                        .clip(RoundedCornerShape(500.dp))
-                        .shadow(50.dp, RoundedCornerShape(370.dp))
+                        .clip(RoundedCornerShape(100.dp))
+                        .shadow(50.dp, RoundedCornerShape(100.dp))
                 )
             }
         }
