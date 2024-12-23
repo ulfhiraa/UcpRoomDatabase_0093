@@ -34,10 +34,8 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.pam_ucp2.R
 import com.example.pam_ucp2.data.SupplierList
@@ -66,35 +64,33 @@ fun SectionHeaderInsertBrg(
         .background(color = Color.LightGray, RoundedCornerShape(bottomEnd = 50.dp))
     ){
         Box(){
-            Column(modifier = Modifier.fillMaxWidth(), horizontalAlignment = Alignment.Start, verticalArrangement = Arrangement.SpaceBetween)
-            {
-                Icon(
-                    Icons.Filled.List,
-                    contentDescription = " ",
-                    Modifier.padding(end = 1.dp),
-                    tint = Color.White
-                )
-            }
             Column (
                 modifier = Modifier.fillMaxWidth(),
                 horizontalAlignment = Alignment.CenterHorizontally,
             ){
                 Spacer(Modifier.padding(20.dp))
+
                 TopAppBar(
                     onBack = onBack,
                     showBackButton = true,
-                    judul = "Tambah Barang",
+                    judul = " T a m b a h \n\n  B a r a n g",
                     modifier = modifier
                 )
             }
+
+            Spacer(Modifier.padding(20.dp))
+
             Column(modifier = Modifier.fillMaxWidth(), horizontalAlignment = Alignment.End, verticalArrangement = Arrangement.Center) {
+
+                Spacer(Modifier.padding(20.dp))
+
                 Image(
                     painter = painterResource(id = R.drawable.bear),
                     contentDescription = " ",
                     Modifier
-                        .size(100.dp)
-                        .clip(RoundedCornerShape(500.dp))
-                        .shadow(50.dp, RoundedCornerShape(370.dp))
+                        .size(80.dp)
+                        .clip(RoundedCornerShape(100.dp))
+                        .shadow(50.dp, RoundedCornerShape(100.dp))
                 )
             }
         }
@@ -127,6 +123,7 @@ fun InsertBrgView( // untuk menampilkan form input barang dengan snackbar
         modifier = modifier,
         snackbarHost = { SnackbarHost(hostState = snackbarHostState) }
     ){ padding ->
+
         Column (
             modifier = Modifier
                 .fillMaxSize()
@@ -135,7 +132,7 @@ fun InsertBrgView( // untuk menampilkan form input barang dengan snackbar
             TopAppBar(
                 onBack = onBack,
                 showBackButton = true,
-                judul = "Tambah Supplier",
+                judul = "Tambah Barang",
                 modifier = modifier
             )
 
@@ -196,6 +193,8 @@ fun FormBarang(
     Column(
         modifier = modifier.fillMaxWidth()
     ) {
+        Spacer(Modifier.padding(20.dp))
+
         // TEXTFIELD NAMA
         OutlinedTextField(
             modifier = Modifier.fillMaxWidth(),

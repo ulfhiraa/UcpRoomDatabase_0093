@@ -60,15 +60,6 @@ fun SectionHeaderInsertSpl(
         .background(color = Color.LightGray, RoundedCornerShape(bottomEnd = 50.dp))
     ){
         Box(){
-            Column(modifier = Modifier.fillMaxWidth(), horizontalAlignment = Alignment.Start, verticalArrangement = Arrangement.SpaceBetween)
-            {
-                Icon(
-                    Icons.Filled.List,
-                    contentDescription = " ",
-                    Modifier.padding(end = 1.dp),
-                    tint = Color.White
-                )
-            }
             Column (
                 modifier = Modifier.fillMaxWidth(),
                 horizontalAlignment = Alignment.CenterHorizontally,
@@ -77,16 +68,19 @@ fun SectionHeaderInsertSpl(
                 TopAppBar(
                     onBack = onBack,
                     showBackButton = true,
-                    judul = "Tambah Supplier",
+                    judul = " T a m b a h \n\nS u p p l i e r",
                     modifier = modifier
                 )
             }
             Column(modifier = Modifier.fillMaxWidth(), horizontalAlignment = Alignment.End, verticalArrangement = Arrangement.Center) {
+
+                Spacer(Modifier.padding(20.dp))
+
                 Image(
                     painter = painterResource(id = R.drawable.bear),
                     contentDescription = " ",
                     Modifier
-                        .size(100.dp)
+                        .size(80.dp)
                         .clip(RoundedCornerShape(500.dp))
                         .shadow(50.dp, RoundedCornerShape(370.dp))
                 )
@@ -185,6 +179,8 @@ fun FormSupplier(
     modifier: Modifier = Modifier
 ) {
     Column() {
+        Spacer(Modifier.padding(20.dp))
+
         // TEXTFIELD NAMA
         OutlinedTextField(
             modifier = Modifier.fillMaxWidth(),
