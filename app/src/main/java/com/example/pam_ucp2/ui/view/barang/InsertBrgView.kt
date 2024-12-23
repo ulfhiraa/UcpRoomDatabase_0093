@@ -147,7 +147,10 @@ fun InsertBrgView( // untuk menampilkan form input barang dengan snackbar
                 },
                 onClick = {
                     viewModel.saveData()
-                    onNavigate()
+                    if (uiState.snackBarMessage == "Data berhasil disimpan")
+                    {
+                        onNavigate()
+                    }
                 }
             )
         }
@@ -271,17 +274,10 @@ fun FormBarang(
 
         // TEXTFIELD NAMA SUPPLIER
 
-        Text(
-            text = "Pilih Nama Supplier",
-            fontSize = 12.sp,
-            fontWeight = FontWeight.Light
-        )
-        Spacer(modifier = Modifier.padding(8.dp))
-
         DropdownSupplier(
             selectedValue = chosenDropdown,
             options = SupplierList.NamaSpl(),
-            label = "Nama Supplier",
+            label = "Pilih Nama Supplier",
             onValueChangeEvent = { selected ->
                 chosenDropdown = selected
                 onValueChange(barangEvent.copy(namaSupplier = selected))

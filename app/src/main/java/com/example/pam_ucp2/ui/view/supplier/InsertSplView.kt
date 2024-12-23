@@ -139,7 +139,10 @@ fun InsertSplView( // untuk menampilkan form input supplier dengan snackbar
                 },
                 onClick = {
                     viewModel.saveData()
-                    onNavigate()
+                    if (uiState.snackBarMessage == "Data berhasil disimpan")
+                    {
+                        onNavigate()
+                    }
                 }
             )
         }
