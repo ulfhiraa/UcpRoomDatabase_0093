@@ -76,18 +76,7 @@ fun HomeBrgView( // Fungsi utama untuk menampilkan halaman daftar barang dengan 
             modifier = Modifier
         ) {
             Scaffold(
-                floatingActionButton = {
-                    FloatingActionButton(
-                        onClick = onAddBrg,
-                        shape = MaterialTheme.shapes.medium,
-                        modifier = Modifier.padding(16.dp)
-                    ) {
-                        Icon(
-                            imageVector = Icons.Default.Add,
-                            contentDescription = "Tambah Barang"
-                        )
-                    }
-                }
+
             ) { innerPadding ->
                 val homeUiState by viewModel.homeUiState.collectAsState()
 
@@ -234,8 +223,8 @@ fun CardBrg( // Untuk menampilkan informasi barang
 ) {
     // Tentukan warna berdasarkan stok barang
     val cardColor = when {
-        brg.stok == 0 -> Color.LightGray // Warna abu-abu untuk stok habis
-        brg.stok in 1..10 -> Color(0xFFFFCDD2) // Warna merah muda untuk stok 1-10
+        brg.stok == 0 -> Color(0xffa39d9d) // Warna abu-abu untuk stok habis
+        brg.stok in 1..10 -> Color(0xFFb35959) // Warna merah muda untuk stok 1-10
         else -> Color(0xFFC8E6C9) // Warna hijau muda untuk stok lebih dari 10
     }
 

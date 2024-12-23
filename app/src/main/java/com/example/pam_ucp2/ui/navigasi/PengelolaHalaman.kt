@@ -63,9 +63,6 @@ fun PengelolaHalaman( // untuk mengelola navigasi antar halaman home, barang dan
                 onDetailClick = { id ->
                     navController.navigate("${DestinasiDetailBrg.route}/$id")
                 },
-                onAddBrg = {
-                    navController.navigate(DestinasiInsertBrg.route)
-                },
                 onBack = {
                     navController.popBackStack()
                 },
@@ -107,7 +104,7 @@ fun PengelolaHalaman( // untuk mengelola navigasi antar halaman home, barang dan
                     navController.popBackStack()
                 },
                 onNavigate = {
-//                    navController.popBackStack()
+                    navController.navigate(DestinasiHomeBrg.route)
                 },
                 modifier = modifier,
             )

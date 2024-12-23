@@ -204,8 +204,8 @@ fun ItemDetailBrg(
             .fillMaxWidth()
             .padding(8.dp), // Tambahkan padding luar
         colors = CardDefaults.cardColors(
-            containerColor = Color(0xFFd1c8db), // Warna biru pastel
-            contentColor = Color(0xffb8aebf)  //(0xFFb9aebd)
+            containerColor = Color(0xFFd1c8db),
+            contentColor = Color(0xffb8aebf)
         ),
         elevation = CardDefaults.cardElevation(6.dp)
     ) {
@@ -270,10 +270,7 @@ fun ComponentDetailBrg(
             modifier = Modifier
                 .size(32.dp) // Ukuran ikon
                 .padding(end = 8.dp),
-
-           // tint = Color(0xFF1E88E5) // Warna ikon biru pastel
-            tint = Color(0xFFb9aebd) // Warna ikon biru pastel
-//            tint = Color(0xFFFFCDD2) // Warna ikon pink pastel
+            tint = Color.Black // Warna ikon hitam
         )
         Column {
             Text(

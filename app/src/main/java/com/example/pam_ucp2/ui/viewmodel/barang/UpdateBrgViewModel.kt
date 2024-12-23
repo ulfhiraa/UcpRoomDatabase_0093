@@ -40,11 +40,11 @@ class UpdateBrgViewModel ( savedStateHandle: SavedStateHandle, private val repos
     fun validateFields(): Boolean {
         val event = updateUIState.barangEvent
         val errorState = FormErrorState(
-            nama = if (event.nama.isEmpty()) null else "Nama tidak boleh kosong",
-            deskripsi = if (event.deskripsi.isEmpty()) null else "Deskripsi tidak boleh kosong",
-            harga = if (event.harga < 0) null else "Harga tidak boleh kosong",
-            stok = if (event.stok < 0) null else "Stok tidak boleh kosong",
-            namaSupplier = if (event.namaSupplier.isEmpty()) null else "Nama Supplier tidak boleh kosong",
+            nama = if (event.nama.isNotEmpty()) null else "Nama tidak boleh kosong",
+            deskripsi = if (event.deskripsi.isNotEmpty()) null else "Deskripsi tidak boleh kosong",
+            harga = if (event.harga > 0) null else "Harga tidak boleh kosong",
+            stok = if (event.stok >= 0) null else "Stok tidak boleh kosong",
+            namaSupplier = if (event.namaSupplier.isNotEmpty()) null else "Nama Supplier tidak boleh kosong",
         )
 
         updateUIState = updateUIState.copy(isEntryValid = errorState)
