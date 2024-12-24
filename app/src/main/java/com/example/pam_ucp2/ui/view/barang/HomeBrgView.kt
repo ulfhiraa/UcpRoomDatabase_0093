@@ -76,7 +76,18 @@ fun HomeBrgView( // Fungsi utama untuk menampilkan halaman daftar barang dengan 
             modifier = Modifier
         ) {
             Scaffold(
-
+                floatingActionButton = {
+                    FloatingActionButton(
+                        onClick = onAddBrg,
+                        shape = MaterialTheme.shapes.medium,
+                        modifier = Modifier.padding(16.dp)
+                    ) {
+                        Icon(
+                            imageVector = Icons.Default.Add,
+                            contentDescription = "Tambah Barang"
+                        )
+                    }
+                }
             ) { innerPadding ->
                 val homeUiState by viewModel.homeUiState.collectAsState()
 
