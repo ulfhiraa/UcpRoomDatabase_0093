@@ -60,6 +60,9 @@ fun PengelolaHalaman( // untuk mengelola navigasi antar halaman home, barang dan
             route = DestinasiHomeBrg.route
         ) {
             HomeBrgView(
+                onAddBrg = {
+                    navController.navigate(DestinasiInsertBrg.route)
+                },
                 onDetailClick = { id ->
                     navController.navigate("${DestinasiDetailBrg.route}/$id")
                 },
