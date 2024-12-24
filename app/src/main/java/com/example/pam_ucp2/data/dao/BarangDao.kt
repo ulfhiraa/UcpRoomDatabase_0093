@@ -20,10 +20,10 @@ interface BarangDao {
     //@Query("SELECT * FROM barang ORDER BY nama ASC")
     @Query("SELECT * FROM barang ORDER BY id ASC")
 
-    fun getAllBarang(): Flow<List<Barang>>
+    fun getAllBarang(): Flow<List<Barang>> //[menggunakan list; banyak data]
 
     @Query("SELECT * FROM barang WHERE id = :id")
-    fun getBarang (id: String) : Flow<Barang>
+    fun getBarang (id: String) : Flow<Barang> // [ menggunakan flow; hanya 1 data]
 
     @Delete
     suspend fun deleteBarang(

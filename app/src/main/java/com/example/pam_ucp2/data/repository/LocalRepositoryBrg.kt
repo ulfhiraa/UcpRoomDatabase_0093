@@ -6,7 +6,7 @@ import kotlinx.coroutines.flow.Flow
 
 class LocalRepositoryBrg (
     private val barangDao: BarangDao
-) : RepositoryBrg {
+) : RepositoryBrg { // implementasi dari RepositoryBrg, jembatan antara repo dan dao
     // insert
     override suspend fun insertBrg(barang: Barang) {
         barangDao.insertBarang(barang)
